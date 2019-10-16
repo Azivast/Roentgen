@@ -9,6 +9,7 @@ radius = 0.43
 height = 0.89
 
 [node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00568128, 0.000983715, 0.00214756 )
 script = ExtResource( 1 )
 bullet = ExtResource( 2 )
 
@@ -19,7 +20,7 @@ shape = SubResource( 1 )
 [node name="Head" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0978454, 0.205872, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206, 0 )
 
 [node name="RayCast" type="RayCast" parent="Head/Camera"]
 
@@ -29,7 +30,13 @@ mesh = ExtResource( 3 )
 material/0 = null
 
 [node name="Firing Particles" type="Particles" parent="Head/Gun"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Firing Position" type="Position3D" parent="Head/Gun"]
+transform = Transform( 13.6507, 0, 0, 0, 13.6507, 0, 0, 0, 13.6507, -4.46108, 0, -5.43652 )
+
+[node name="FiringTimer" type="Timer" parent="Head/Gun"]
+wait_time = 0.2
+one_shot = true
 
 [node name="GroundRayCast" type="RayCast" parent="Head"]
 
