@@ -34,10 +34,14 @@ public class Player : KinematicBody
   // Shooting variables
 	private RayCast raycast;
 	[Export] private Node gunParticles;
+	[Export] private Position3D firingPosition;
 	[Export] private PackedScene bullet;
+	[Export] private Timer firingTimer;
 	private Node bulletContainer;
 
 	private Spatial head;
+	// Where the player is looking
+	private Basis aim;
 
 
 
@@ -48,6 +52,8 @@ public class Player : KinematicBody
 		onGroundRaycast = (RayCast)GetNode("Head/Camera/RayCast");
 		head =  (Spatial)GetNode("Head");
 		bulletContainer = GetNode("Bullet Container");
+		firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
+		firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
   }
 	
   public override void _Input(InputEvent @event)
@@ -75,7 +81,7 @@ public class Player : KinematicBody
 		direction = Vector3.Zero;
 
 		// Direction player is looking
-		var aim = head.GetGlobalTransform().basis;
+		aim = head.GetGlobalTransform().basis;
 		
 		// Get input
 		if (Input.IsActionPressed("move_forward"))
@@ -168,7 +174,7 @@ public class Player : KinematicBody
 		// Position player would move to at max speed
 		var target = direction * flySpeed;
 
-		// Calculate amount to move based on acceleration.
+		// Calculate amount to move based on acceleration
 		velocity = velocity.LinearInterpolate(target, flyAccel * delta);
 				
 		// Move
@@ -177,13 +183,17 @@ public class Player : KinematicBody
 	
 	private void shoot()
 	{		
+		// Start timer/cooldown
+		firingTimer.Start();
+
 		// Play firing effects once
 		//((Particles)gunParticles).Emitting = true;
 
 		// Spawn new bullet instance
 		Node b = bullet.Instance();
-		((Node)b).SetHead(new Vector3(1, 0, 0));
-		b.GetChild("Player Bullet").Heading 
+		// Set current position and the direction it should travel
+		((Player_Bullet)b).SetPosAndHeading(firingPosition.GetGlobalTransform().origin, -aim[2].Normalized());
+		// Add it to the bullet container
 		bulletContainer.AddChild(b);
 	}
 	
@@ -197,7 +207,8 @@ public class Player : KinematicBody
 
 		if (Input.IsActionPressed("shoot"))
 		{
-			shoot();
+			if (firingTimer.IsStopped())
+				shoot();
 		}
 		
 		// Check if game should exit

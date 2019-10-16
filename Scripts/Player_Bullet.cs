@@ -5,21 +5,43 @@ public class Player_Bullet : Area
 {
     [Export] private int speed = 10;
 	private Vector3 velocity = new Vector3();
-	[Export] public Vector3 Heading = new Vector3();
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
-	
+	// Direction of travel
+	private Vector3 heading;
 	public override void _Process(float delta)
   	{
-		//AngularVelocity = Heading * speed * delta;
+		// Move bullet
+		SetTranslation(GetTranslation() + heading);
   	}
 
-    public void SetHeading(Vector3 heading)
-  	{
-		Heading = heading;
-  	}
+	public void SetPosAndHeading(Vector3 position, Vector3 heading)
+	{
+		SetTranslation(position);
+		heading.Normalized();
+		this.heading = heading;
+	}
+
+	private void OnLifeTimeTimeout()
+	{
+		RemoveBullet();
+	}
+
+	private void OnBodyEntered(Node body)
+	{
+		if (body.Name == "Player") {}
+
+		else if (body.HasMethod("Kill"))
+		{
+			//((Enemy)body).Kill();
+			RemoveBullet();
+		}
+
+		else
+			RemoveBullet();
+	}
+
+	private void RemoveBullet()
+	{
+		// Safely remove node
+		QueueFree();
+	}
 }
