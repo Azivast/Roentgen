@@ -1,0 +1,5 @@
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\bin\Tools\Roentgen.dll
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\bin\Tools\Roentgen.pdb
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\obj\Tools\Roentgen.csprojResolveAssemblyReference.cache
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\obj\Tools\Roentgen.dll
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\obj\Tools\Roentgen.pdb
