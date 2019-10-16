@@ -1,0 +1,5 @@
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\obj\Tools\New Game Project.csprojResolveAssemblyReference.cache
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\bin\Tools\New Game Project.dll
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\bin\Tools\New Game Project.pdb
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\obj\Tools\New Game Project.dll
+C:\Users\olle.astre\Desktop\Gymnasiearbete\Roentgen\.mono\temp\obj\Tools\New Game Project.pdb
