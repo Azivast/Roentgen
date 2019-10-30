@@ -7,6 +7,14 @@ public class Player : KinematicBody
 	Vector3 direction;
 	Vector3 velocity;
 
+	public Vector3 Velocity
+	{ 
+		get
+		{
+			return velocity;
+		}
+	}
+
 	// Mouse variables
 	[Export] public static float mouseSensitivity = 0.003f;
 	private Vector2 mouseMovement;

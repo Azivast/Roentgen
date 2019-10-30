@@ -3,21 +3,22 @@ using System;
 
 public class Player_Bullet : Area
 {
-    [Export] private int speed = 10;
+    [Export] private float speed = 1;
 	private Vector3 velocity = new Vector3();
 	// Direction of travel
 	private Vector3 heading;
+
 	public override void _Process(float delta)
-  	{
+	{
 		// Move bullet
 		SetTranslation(GetTranslation() + heading);
-  	}
+	}
 
 	public void SetPosAndHeading(Vector3 position, Vector3 heading)
 	{
 		SetTranslation(position);
-		heading.Normalized();
-		this.heading = heading;
+		heading = heading.Normalized();
+		this.heading = heading*speed;
 	}
 
 	private void OnLifeTimeTimeout()
