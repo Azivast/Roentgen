@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Head.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Head.cs" type="Script" id=3]
 [ext_resource path="res://gun.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
 height = 0.89
 
 [node name="Player" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00568128, 0.000983715, 0.00214756 )
 script = ExtResource( 1 )
 bullet = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
@@ -30,6 +30,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206, 0 )
 transform = Transform( 0.0732564, 0, 0, 0, 0.0732564, 0, 0, 0, 0.0732564, 0.326803, 0, -0.426806 )
 mesh = ExtResource( 4 )
 material/0 = null
+script = ExtResource( 5 )
 
 [node name="Firing Particles" type="Particles" parent="Head/Gun"]
 

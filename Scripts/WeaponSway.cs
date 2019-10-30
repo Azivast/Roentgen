@@ -1,11 +1,11 @@
 using Godot;
 using System;
 
-public class Head : Spatial
+public class WeaponSway : Spatial
 {
-/*     [Export] private float amount;
-    [Export] private float maxAmount;
-    [Export] private float smoothAmount;  
+    [Export] private float amount = 10;
+    [Export] private float maxAmount = 100;
+    [Export] private float smoothAmount = 1;  
 
     private  Vector3 initialPosition;
 
@@ -22,23 +22,22 @@ public class Head : Spatial
     {
         if (@event is InputEventMouseMotion)
         {
-            float movementX = ((InputEventMouseButton)@event).Relative.x * amount;
-            float movementY = ((InputEventMouseButton)@event).Relative.y * amount;
-            float movementY = @event. * amount;
-            float movementY = test.Relative.y *amount;
+            float movementX = ((InputEventMouseMotion)@event).Relative.x * amount;
+            float movementY = ((InputEventMouseMotion)@event).Relative.y * amount;
+            
         }
-        if (@event is InputEventMouseButton)
-        {GD.Print("Mouse ", ((InputEventMouseButton)@event).Position);}
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        initialPosition = Translation;
         movementX = Mathf.Clamp(movementX, -maxAmount, maxAmount);
         movementY = Mathf.Clamp(movementY, -maxAmount, maxAmount);
-
         Vector3 finalposition = new Vector3(movementX, movementY, 0);
+        Console.WriteLine(movementX);
+        Console.WriteLine(movementY);
         //SetTranslation(Vector3.Lerp(Transform.origin, finalposition + initialPosition, delta * smoothAmount));
-        //Transform.origin.LinearInterpolate(finalposition + initialPosition, delta * smoothAmount);
-    } */
+        Translation.LinearInterpolate(finalposition + initialPosition, delta * smoothAmount);
+    }
 }
