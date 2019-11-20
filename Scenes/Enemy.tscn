@@ -20,7 +20,7 @@ script = ExtResource( 1 )
 bullet = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -32,7 +32,7 @@ texture = ExtResource( 3 )
 transform = Transform( 2.13324, 0, 0, 0, 1, 0, 0, 0, 2.67335, 0, 0, 0 )
 
 [node name="Shape" type="CollisionShape" parent="LineOfSight"]
-transform = Transform( 25.7702, 0, 0, 0, -1.12645e-06, -25.7702, 0, 19.7409, -8.62904e-07, 0, 0, 0 )
+transform = Transform( 25.7702, 0, 0, 0, -1.12645e-006, -25.7702, 0, 19.7409, -8.62904e-007, 0, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="FiringTimer" type="Timer" parent="."]

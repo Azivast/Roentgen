@@ -28,16 +28,17 @@ public class Enemy_Bullet : Area
 
     private void OnBodyEntered(Node body)
     {
-        // if (body.Name == "Enemy") {}
+        if (body.Name == "Enemy") {}
 
-        // else if (body.HasMethod("Kill"))
-        // {
-        //     //((Enemy)body).Kill();
-        //     RemoveBullet();
-        // }
+        // Damage player if it hits them
+        else if (body.HasMethod("Damage"))
+        {
+            ((Player)body).Damage(10);
+            RemoveBullet();
+        }
 
-        // else
-        //     RemoveBullet();
+        else
+            RemoveBullet();
     }
 
     private void RemoveBullet()
