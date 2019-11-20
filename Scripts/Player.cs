@@ -15,6 +15,13 @@ public class Player : KinematicBody
 		}
 	}
 
+	// Life variables
+	[Export] public int MaxHealth = 100;
+	public int Health;
+
+	// HUD variables
+	private Label HealthLabel;
+
 	// Mouse variables
 	[Export] public static float mouseSensitivity = 0.003f;
 	private Vector2 mouseMovement;
@@ -62,6 +69,10 @@ public class Player : KinematicBody
 		bulletContainer = GetNode("Bullet Container");
 		firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
 		firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
+		HealthLabel = (Label)GetNode("HUD/Health");
+
+		// Set life to max life
+		Health = MaxHealth;
   }
 	
   public override void _Input(InputEvent @event)
@@ -218,6 +229,9 @@ public class Player : KinematicBody
 			if (firingTimer.IsStopped())
 				shoot();
 		}
+
+		// Update text on HUD
+		HealthLabel.Text = Health.ToString();
 		
 		// Check if game should exit
 		if (Input.IsActionPressed("ui_cancel"))
@@ -238,5 +252,22 @@ public class Player : KinematicBody
 		{
 		flying = false;
 		}
+	}
+
+
+	// Function for taking damage
+	public void Damage(int damageAmount)
+	{
+		// Apply damage to health and keep it within the interval of 0 and max Health.
+		Health = Mathf.Clamp((Health - damageAmount), 0, MaxHealth);
+
+		if (Health == 0) 
+		{
+			Kill();
+		}
+	}
+	public void Kill()
+	{
+		GetTree().ChangeScene("res://Scenes/Level1.tscn");
 	}
 }

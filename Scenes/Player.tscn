@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Player Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Head.cs" type="Script" id=3]
 [ext_resource path="res://gun.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
@@ -15,7 +16,7 @@ script = ExtResource( 1 )
 bullet = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
@@ -44,3 +45,26 @@ one_shot = true
 [node name="GroundRayCast" type="RayCast" parent="Head"]
 
 [node name="Bullet Container" type="Node" parent="."]
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Crosshair" type="TextureRect" parent="HUD/CenterContainer"]
+margin_left = 928.0
+margin_top = 508.0
+margin_right = 992.0
+margin_bottom = 572.0
+texture = ExtResource( 6 )
+
+[node name="Health" type="Label" parent="HUD"]
+margin_top = 980.0
+margin_right = 279.0
+margin_bottom = 1078.0
+text = "Health: Null"
+valign = 1
+uppercase = true
