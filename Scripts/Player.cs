@@ -26,6 +26,9 @@ public class Player : KinematicBody
 	[Export] public static float mouseSensitivity = 0.003f;
 	private Vector2 mouseMovement;
 
+	// Raycast for interacting with objects
+	private RayCast raycast;
+
 	// Fly variables
 	private float flySpeed = 40f;
 	private float flyAccel = 1f;
@@ -47,7 +50,6 @@ public class Player : KinematicBody
 	[Export] private int maxSlopAngle = 25;
 
   // Shooting variables
-	private RayCast raycast;
 	[Export] private Node gunParticles;
 	[Export] private Position3D firingPosition;
 	[Export] private PackedScene bullet;
@@ -64,7 +66,7 @@ public class Player : KinematicBody
   public override void _Ready()
 	{
 		raycast = (RayCast)GetNode("Head/Camera/RayCast");
-		onGroundRaycast = (RayCast)GetNode("Head/Camera/RayCast");
+		onGroundRaycast = (RayCast)GetNode("Head/GroundRayCast");
 		head =  (Spatial)GetNode("Head");
 		bulletContainer = GetNode("Bullet Container");
 		firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
@@ -83,6 +85,25 @@ public class Player : KinematicBody
 			mouseMovement = ((InputEventMouseMotion)@event).Relative;
 		}
   }	
+
+    private void _Interact()
+  	{
+	  var collider = raycast.GetCollider();
+	
+	  try 
+	  {
+	  	if (collider.HasMethod("Interact")) 
+	  	{
+		  	Console.WriteLine("Door opened.");
+		  	((Door)collider).Interact();
+	  	}
+	  }
+
+	  catch
+	  {
+	  	return;
+	  }
+  	}	
 
 	private void look()
 	{
@@ -232,6 +253,10 @@ public class Player : KinematicBody
 
 		// Update text on HUD
 		HealthLabel.Text = Health.ToString();
+
+		// Chek if player tries to interact using E
+		 if (Input.IsActionJustPressed("interact")) 
+		 	_Interact();
 		
 		// Check if game should exit
 		if (Input.IsActionPressed("ui_cancel"))

@@ -26,6 +26,8 @@ script = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206, 0 )
 
 [node name="RayCast" type="RayCast" parent="Head/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -20 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
 transform = Transform( 0.0732564, 0, 0, 0, 0.0732564, 0, 0, 0, 0.0732564, 0.326803, 0, -0.426806 )
