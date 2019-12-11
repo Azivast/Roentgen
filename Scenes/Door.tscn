@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Door.cs" type="Script" id=1]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.923645, 1.51016, 0.126111 )
+
+[sub_resource type="CubeMesh" id=3]
+
+[node name="Door" type="Spatial"]
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( 1, -0.000343514, 1.64586e-008, 0.000343514, 1, 3.47462e-005, -2.83945e-008, -3.47462e-005, 1, 0, 0, 0 )
+rotation_mode = 0
+cubic_interp = false
+loop = false
+
+[node name="Door" type="StaticBody" parent="Path/PathFollow"]
+transform = Transform( 1, 9.86601e-013, 0, 9.866e-013, 1, 0, -5.32907e-015, -1.09139e-011, 1, 0.000147318, 1.4227, 1.49009e-005 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Path/PathFollow/Door"]
+transform = Transform( 0.993393, 0, 0, 0, 0.993393, 0, 0, 0, 0.993393, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Path/PathFollow/Door"]
+transform = Transform( 0.9224, 1.17395e-010, 1.81643e-009, -8.67093e-011, 1.50116, 2.22276e-006, 8.85906e-009, 1.76429e-005, 0.125155, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Timer" type="Timer" parent="Path/PathFollow/Door"]
+wait_time = 10.0
+one_shot = true

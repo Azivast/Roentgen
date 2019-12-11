@@ -6,8 +6,11 @@ public class Enemy : KinematicBody
     private Node Player;
 
     private bool seesPlayer = false;
-
     private Area SeeableArea;
+
+    // The pathfollow parent node that the enemy follows
+    private PathFollow path;
+    [Export] private float movementSpeed = 0.1f;
 
     // Shooting Variables
     private Timer firingTimer;
@@ -20,6 +23,11 @@ public class Enemy : KinematicBody
         SeeableArea = (Area)GetNode("LineOfSight");
         firingTimer = (Timer)GetNode("FiringTimer");
         bulletContainer = GetNode("Bullet Container");
+
+        // Get parent node and save it in path variable if it is a path
+        Node parentNode = GetParent();
+        if (parentNode is PathFollow)
+            path = (PathFollow)parentNode;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +36,14 @@ public class Enemy : KinematicBody
         if (seesPlayer)
             if (firingTimer.IsStopped())
                 shoot();
+
+
+        // Move the enemy along the path if there is one
+        try {
+        path.Offset += movementSpeed;
+        }
+        // Nothing needs to happen if it failes
+        catch {}
     }
 
     private void shoot()
