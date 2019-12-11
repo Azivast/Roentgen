@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Door.cs" type="Script" id=1]
 
@@ -6,6 +6,22 @@
 _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0 ),
 "tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Open"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.000147318, 1.4227, 1.49009e-005 ), Vector3( 0, 5, 0 ) ]
 }
 
 [sub_resource type="BoxShape" id=2]
@@ -25,8 +41,11 @@ cubic_interp = false
 loop = false
 
 [node name="Door" type="StaticBody" parent="Path/PathFollow"]
-transform = Transform( 1, 9.86601e-013, 0, 9.866e-013, 1, 0, -5.32907e-015, -1.09139e-011, 1, 0.000147318, 1.4227, 1.49009e-005 )
+transform = Transform( 1, 9.86598e-013, 0, 9.86601e-013, 1, 3.63798e-012, -1.77636e-015, -3.63798e-012, 1, 0.000147318, 1.4227, 1.49009e-005 )
 script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path/PathFollow/Door"]
+anims/Open = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Path/PathFollow/Door"]
 transform = Transform( 0.993393, 0, 0, 0, 0.993393, 0, 0, 0, 0.993393, 0, 0, 0 )
