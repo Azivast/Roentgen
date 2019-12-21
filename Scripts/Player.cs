@@ -112,6 +112,11 @@ public class Player : KinematicBody
 			head.Rotate(Vector3.Up, -mouseMovement.x * mouseSensitivity);
 			head.RotateObjectLocal(Vector3.Left, mouseMovement.y * Player.mouseSensitivity);
 
+			// Clamp rotation so that player can't turn their head upside down
+			var rotation = head.RotationDegrees;
+			rotation.x = Mathf.Clamp(rotation.x, -79, 79);
+			head.RotationDegrees = rotation;
+
 			mouseMovement = Vector2.Zero;
 		}
 	}

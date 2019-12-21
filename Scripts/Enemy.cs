@@ -5,8 +5,10 @@ public class Enemy : KinematicBody
 {
     private Node Player;
 
-    private bool seesPlayer = false;
+    private bool playerInFOV = false;
+    private bool player = false;
     private Area SeeableArea;
+    private RayCast rayCast;
 
     // The pathfollow parent node that the enemy follows
     private PathFollow path;
@@ -23,6 +25,7 @@ public class Enemy : KinematicBody
         SeeableArea = (Area)GetNode("LineOfSight");
         firingTimer = (Timer)GetNode("FiringTimer");
         bulletContainer = GetNode("Bullet Container");
+        rayCast = (RayCast)GetNode("LineOfSight/RayCast");
 
         // Get parent node and save it in path variable if it is a path
         Node parentNode = GetParent();
@@ -33,9 +36,19 @@ public class Enemy : KinematicBody
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (seesPlayer)
-            if (firingTimer.IsStopped())
-                shoot();
+        if (playerInFOV)
+        {
+            // Point raycast thowards player
+            rayCast.SetCastTo(((KinematicBody)Player).GetGlobalTransform().origin);
+            // Check if enemy has clear line of sight to player
+            var collider = rayCast.GetCollider();
+            if (collider == Player || collider == null) 
+            {
+                // Shoot
+                if (firingTimer.IsStopped())
+                    shoot();
+            }
+        }
 
 
         // Move the enemy along the path if there is one
@@ -46,7 +59,7 @@ public class Enemy : KinematicBody
         catch {}
     }
 
-    private void shoot()
+    private void shoot() // TODO: Use the rayCast to check if player is behind wall and if so don't fire.
     {		
         // Start timer/cooldown
         firingTimer.Start();
@@ -67,11 +80,11 @@ public class Enemy : KinematicBody
 	{
 		if (body.Name == "Player")
         {
-            seesPlayer = true;
-
             // Link body to local player variable
             if (Player == null)
                 Player = body;
+
+            playerInFOV = true;
         }
 	}
 
@@ -79,7 +92,7 @@ public class Enemy : KinematicBody
     {
         if (body.Name == "Player")
         {
-            seesPlayer = false;
+            playerInFOV = false;
         }
     }
 }

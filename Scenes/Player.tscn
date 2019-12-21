@@ -20,6 +20,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0,
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="Head"]
@@ -27,7 +28,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206, 0 )
 
 [node name="RayCast" type="RayCast" parent="Head/Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -20 )
+cast_to = Vector3( 0, 0, -2 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
 transform = Transform( 0.0732564, 0, 0, 0, 0.0732564, 0, 0, 0, 0.0732564, 0.326803, 0, -0.426806 )
@@ -64,9 +65,12 @@ margin_bottom = 572.0
 texture = ExtResource( 6 )
 
 [node name="Health" type="Label" parent="HUD"]
-margin_top = 980.0
-margin_right = 279.0
-margin_bottom = 1078.0
+margin_left = 111.58
+margin_top = 971.631
+margin_right = 390.58
+margin_bottom = 1069.63
 text = "Health: Null"
+align = 1
 valign = 1
 uppercase = true
+percent_visible = -0.0909091

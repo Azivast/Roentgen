@@ -26,6 +26,7 @@ autostart = true
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 0.309736, 0, 0, 0, 0.309736, 0, 0, 0, 0.309736, 0, 0, 0 )
 material_override = SubResource( 2 )
+cast_shadow = 0
 texture = ExtResource( 2 )
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="timeout" from="LifeTime" to="." method="OnLifeTimeTimeout"]
