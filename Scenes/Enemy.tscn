@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Enemy Bullet.tscn" type="PackedScene" id=2]
@@ -15,6 +15,15 @@ params_billboard_keep_scale = true
 margin = 0.001
 points = PoolVector3Array( 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0, 0, 0 )
 
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+params_blend_mode = 1
+albedo_color = Color( 0.827451, 0, 0, 0.501961 )
+
+[sub_resource type="PrismMesh" id=6]
+material = SubResource( 5 )
+
 [node name="Enemy" type="KinematicBody"]
 script = ExtResource( 1 )
 bullet = ExtResource( 2 )
@@ -30,10 +39,27 @@ texture = ExtResource( 3 )
 
 [node name="LineOfSight" type="Area" parent="."]
 transform = Transform( 2.13324, 0, 0, 0, 1, 0, 0, 0, 2.67335, 0, 0, 0 )
+input_ray_pickable = false
 
 [node name="Shape" type="CollisionShape" parent="LineOfSight"]
 transform = Transform( 25.7702, 0, 0, 0, -1.12645e-006, -25.7702, 0, 19.7409, -8.62904e-007, 0, 0, 0 )
 shape = SubResource( 3 )
+
+[node name="RayCast" type="RayCast" parent="LineOfSight"]
+transform = Transform( 0.468771, 0, 0, 0, 1, 0, 0, 0, 0.374062, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -53 )
+
+[node name="debug" type="MeshInstance" parent="LineOfSight/RayCast"]
+transform = Transform( 0.0812396, 0, 0, 0, 0.0812396, 0, 0, 0, 23.3603, 0, 0, -27.97 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="debug" type="MeshInstance" parent="LineOfSight"]
+transform = Transform( 13.0623, 0, 0, 0, -4.2773e-007, -13.9805, 0, 9.78533, -6.11106e-007, 0, 0, -9.62045 )
+mesh = SubResource( 6 )
+skeleton = NodePath("")
+material/0 = null
 
 [node name="FiringTimer" type="Timer" parent="."]
 wait_time = 0.2

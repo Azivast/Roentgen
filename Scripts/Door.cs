@@ -4,7 +4,6 @@ using System;
 public class Door : StaticBody
 {
     private AnimationPlayer animation;
-    private bool animating = false;
 
     private int state = 0;
     private const int closed = 0;
@@ -27,24 +26,23 @@ public class Door : StaticBody
         if (state == open && Timer.IsStopped()) 
         {
             state = closed;
-            animating = true;
 			animation.PlayBackwards("Open");
         } 
-        
     }
 
     // Method that runs when door is interacted with
     public void Interact()
   	{
+        Console.WriteLine("beep boop");
         // Open the door if it is unlocked
-        if (animating == false) 
-        {
+        // if (animation.GetCurrentAnimation() == "") 
+        // {
 		    if (state == closed)
             {
                 state = open;
                 Timer.Start();
                 animation.Play("Open");
             }
-        }
+        // }
   	}	
 }
