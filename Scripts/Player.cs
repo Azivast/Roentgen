@@ -14,6 +14,13 @@ public class Player : KinematicBody
 			return velocity;
 		}
 	}
+	public Vector3 Direction
+	{ 
+		get
+		{
+			return direction;
+		}
+	}
 
 	// Life variables
 	[Export] public int MaxHealth = 100;
@@ -35,7 +42,7 @@ public class Player : KinematicBody
 	private bool flying = false;
 
 	// Walk variables
-	private float gravity = -9.82f * 0.02f;
+	private float gravity = -9.82f * 0.03f;
 	[Export] public float maxWalkSpeed = 4f;
 	[Export] private float maxSprintSpeed = 7f;
 	[Export] private float accel = 2f;
@@ -62,48 +69,48 @@ public class Player : KinematicBody
 
 
 
-  // Called when the node enters the scene tree for the first time.
-  public override void _Ready()
-	{
-		raycast = (RayCast)GetNode("Head/Camera/RayCast");
-		onGroundRaycast = (RayCast)GetNode("Head/GroundRayCast");
-		head =  (Spatial)GetNode("Head");
-		bulletContainer = GetNode("Bullet Container");
-		firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
-		firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
-		HealthLabel = (Label)GetNode("HUD/Health");
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+		{
+			raycast = (RayCast)GetNode("Head/Camera/RayCast");
+			onGroundRaycast = (RayCast)GetNode("Head/GroundRayCast");
+			head =  (Spatial)GetNode("Head");
+			bulletContainer = GetNode("Bullet Container");
+			firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
+			firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
+			HealthLabel = (Label)GetNode("HUD/Health");
 
-		// Set life to max life
-		Health = MaxHealth;
-  }
-	
-  public override void _Input(InputEvent @event)
-  {
-		// Rotate
-		if (@event is InputEventMouseMotion)
-    	{
-			mouseMovement = ((InputEventMouseMotion)@event).Relative;
+			// Set life to max life
+			Health = MaxHealth;
 		}
-  }	
-
-    private void _Interact()
-  	{
-	  var collider = raycast.GetCollider();
 	
-	  try 
-	  {
-	  	if (collider.HasMethod("Interact")) 
-	  	{
-		  	Console.WriteLine("Door opened.");
-		  	((Door)collider).Interact();
-	  	}
-	  }
+	public override void _Input(InputEvent @event)
+	{
+			// Rotate
+			if (@event is InputEventMouseMotion)
+			{
+				mouseMovement = ((InputEventMouseMotion)@event).Relative;
+			}
+	}	
 
-	  catch
-	  {
-	  	return;
-	  }
-  	}	
+	private void _Interact()
+	{
+		var collider = raycast.GetCollider();
+	
+		try 
+		{
+			if (collider.HasMethod("Interact")) 
+			{
+				Console.WriteLine("Door opened.");
+				((Door)collider).Interact();
+			}
+		}
+
+		catch
+		{
+			return;
+		}
+	}	
 
 	private void look()
 	{
@@ -113,6 +120,7 @@ public class Player : KinematicBody
 			head.RotateObjectLocal(Vector3.Left, mouseMovement.y * Player.mouseSensitivity);
 
 			// Clamp rotation so that player can't turn their head upside down
+			// TODO: Fix this so it actually does something
 			var rotation = head.RotationDegrees;
 			rotation.x = Mathf.Clamp(rotation.x, -79, 79);
 			head.RotationDegrees = rotation;

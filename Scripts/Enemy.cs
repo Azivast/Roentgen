@@ -53,7 +53,7 @@ public class Enemy : KinematicBody
 
         // Move the enemy along the path if there is one
         try {
-        path.Offset += movementSpeed;
+        path.Offset -= movementSpeed;
         }
         // Nothing needs to happen if it failes
         catch {}
