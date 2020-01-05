@@ -43,18 +43,20 @@ public class Player : KinematicBody
 
 	// Walk variables
 	private float gravity = -9.82f * 0.03f;
-	[Export] public float maxWalkSpeed = 4f;
-	[Export] private float maxSprintSpeed = 7f;
-	[Export] private float accel = 2f;
-	[Export] private float deAccel = 10f;
+	public float maxWalkSpeed = 3f;
+	// This variable doesn't work for some damn reason
+	// Searh for "maxSprintSpeed" further down and set it manually instead
+	private float maxSprintSpeed = 4f;
+	private float accel = 2f;
+	private float deAccel = 10f;
 
 	// Jumping variables
-	[Export] private float jumpHeight = 6;
+	private float jumpHeight = 6;
 	private bool onGround = false;
 	private RayCast onGroundRaycast;
 
 	// Slope variables
-	[Export] private int maxSlopAngle = 25;
+	private int maxSlopAngle = 25;
 
   // Shooting variables
 	[Export] private Node gunParticles;
@@ -178,16 +180,16 @@ public class Player : KinematicBody
 		horizVelocity.y = 0;
 
 		// Speed to move at
-		float speed;
+		float speed = maxWalkSpeed;
+
+		// Check if also running
 		if (Input.IsActionPressed("move_sprint"))
-			speed = maxSprintSpeed;
-		else 
-			speed = maxWalkSpeed;
+			speed = 6;
 
 		// Position player would move to at max speed
 		var target = direction * speed;
 
-		// Decide of accel or deaccel
+		// Decide if accel or deaccel
 		float acceleration;
 		if (direction.Dot(horizVelocity) > 0)
 			acceleration = accel;
@@ -268,8 +270,8 @@ public class Player : KinematicBody
 		HealthLabel.Text = Health.ToString();
 
 		// Chek if player tries to interact using E
-		 if (Input.IsActionJustPressed("interact")) 
-		 	_Interact();
+		if (Input.IsActionJustPressed("interact")) 
+			_Interact();
 		
 		// Check if game should exit
 		if (Input.IsActionPressed("ui_cancel"))

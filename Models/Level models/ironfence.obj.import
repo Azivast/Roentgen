@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ironfence.obj-700a7df2684f91a7e8116f1b7cbcdec6.mesh"
+
+[deps]
+
+files=[ "res://.import/ironfence.obj-700a7df2684f91a7e8116f1b7cbcdec6.mesh" ]
+
+source_file="res://Models/Level models/ironfence.obj"
+dest_files=[ "res://.import/ironfence.obj-700a7df2684f91a7e8116f1b7cbcdec6.mesh", "res://.import/ironfence.obj-700a7df2684f91a7e8116f1b7cbcdec6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
