@@ -84,6 +84,9 @@ public class Player : KinematicBody
 
 			// Set life to max life
 			Health = MaxHealth;
+
+			// Set Player variable for all enemies
+			GetTree().CallGroup("Enemies", "SetPlayer", this);
 		}
 	
 	public override void _Input(InputEvent @event)
@@ -252,7 +255,7 @@ public class Player : KinematicBody
 		bulletContainer.AddChild(b);
 	}
 	
-	public override void _Process(float delta)
+	public override void _PhysicsProcess(float delta)
     {
 		look();
 		if (flying)

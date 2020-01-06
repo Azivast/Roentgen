@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Enemy Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/enemy.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/DirectionalBillboard.cs" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
-height = 1.7
+radius = 0.5
+height = 0.89
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
@@ -30,21 +30,12 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="ConvexPolygonShape" id=4]
-margin = 0.001
-points = PoolVector3Array( 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0, 0, 0 )
+[sub_resource type="CylinderShape" id=4]
+radius = 14.7417
 
-[sub_resource type="CubeMesh" id=5]
-
-[sub_resource type="SpatialMaterial" id=6]
-params_blend_mode = 1
-albedo_color = Color( 0.827451, 0, 0, 0.501961 )
-
-[sub_resource type="PrismMesh" id=7]
-material = SubResource( 6 )
-
-[node name="Enemy" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 0.879842, 0, 0, 0, 1, 0, 0, 0 )
+[node name="Enemy" type="KinematicBody" groups=[
+"Enemies",
+]]
 script = ExtResource( 1 )
 bullet = ExtResource( 2 )
 
@@ -55,45 +46,31 @@ shape = SubResource( 1 )
 [node name="Sprite3D" type="Sprite3D" parent="." groups=[
 "EnemySprites",
 ]]
-transform = Transform( 2.86479, 0, 0, 0, 5.84654, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.106337, 0 )
 material_override = SubResource( 2 )
-pixel_size = 0.05
+pixel_size = 0.027
 texture = ExtResource( 3 )
 vframes = 5
 hframes = 4
-script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
 anims/walk = SubResource( 3 )
-
-[node name="LineOfSight" type="Area" parent="."]
-transform = Transform( -2.13324, 0, -2.33712e-07, 0, 1, 0, 1.86494e-07, 0, -2.67335, 0, 0, 0 )
-input_ray_pickable = false
-
-[node name="Shape" type="CollisionShape" parent="LineOfSight"]
-transform = Transform( 25.7702, 0, 0, 0, -1.12645e-06, -25.7702, 0, 19.7409, -8.62904e-07, 0, 0, 0 )
-shape = SubResource( 4 )
-
-[node name="RayCast" type="RayCast" parent="LineOfSight"]
-transform = Transform( 0.468771, 0, 0, 0, 1, 0, 0, 0, 0.374062, 0, 0, 0 )
-enabled = true
-cast_to = Vector3( 0, 0, -53 )
-
-[node name="debug" type="MeshInstance" parent="LineOfSight/RayCast"]
-transform = Transform( 0.0812396, 0, 0, 0, 0.0812396, 0, 0, 0, 23.3603, 0, 0, -27.97 )
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="debug" type="MeshInstance" parent="LineOfSight"]
-transform = Transform( 13.0623, 0, 0, 0, -4.2773e-07, -13.9805, 0, 9.78533, -6.11106e-07, 0, 0, -9.62045 )
-mesh = SubResource( 7 )
-skeleton = NodePath("")
-material/0 = null
 
 [node name="FiringTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
 [node name="Bullet Container" type="Node" parent="."]
+
+[node name="LineOfSight" type="Area" parent="."]
+transform = Transform( 0.54951, 0, 0, 0, 1.98152, 0, 0, 0, 0.54951, 0, 0, 0 )
+
+[node name="Shape" type="CollisionShape" parent="LineOfSight"]
+shape = SubResource( 4 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 0 )
 [connection signal="body_entered" from="LineOfSight" to="." method="OnSeeableAreaEntered"]
 [connection signal="body_exited" from="LineOfSight" to="." method="OnSeeableAreaExit"]
