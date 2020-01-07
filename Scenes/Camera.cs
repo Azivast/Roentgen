@@ -3,7 +3,7 @@ using System;
 
 public class Camera : Godot.Camera
 {
-    float swayAmount = 0.7f;
+    float swayAmount = 0.3f;
     float smoothAmount = 10f;
 
     // Called when the node enters the scene tree for the first time.

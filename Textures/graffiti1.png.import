@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/floor2.png-d2c59cf49473f27a593926d458374862.s3tc.stex"
-path.etc2="res://.import/floor2.png-d2c59cf49473f27a593926d458374862.etc2.stex"
+path.s3tc="res://.import/graffiti1.png-342a8c3f9efdab13eedc8d187a0b0429.s3tc.stex"
+path.etc2="res://.import/graffiti1.png-342a8c3f9efdab13eedc8d187a0b0429.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/floor2.png"
-dest_files=[ "res://.import/floor2.png-d2c59cf49473f27a593926d458374862.s3tc.stex", "res://.import/floor2.png-d2c59cf49473f27a593926d458374862.etc2.stex" ]
+source_file="res://Textures/graffiti1.png"
+dest_files=[ "res://.import/graffiti1.png-342a8c3f9efdab13eedc8d187a0b0429.s3tc.stex", "res://.import/graffiti1.png-342a8c3f9efdab13eedc8d187a0b0429.etc2.stex" ]
 
 [params]
 
@@ -23,10 +23,10 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
 flags/filter=false
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
-process/fix_alpha_border=true
+flags/srgb=2
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
