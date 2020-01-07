@@ -6,7 +6,7 @@ public class Enemy : KinematicBody
     private bool dead = false;
     
     private float movementSpeed = 10f;
-    private float maxMovementSpeed = 50f;
+    private float maxMovementSpeed = 100f;
     private float gravity = -9.82f * 0.03f;
     Vector3 velocity = Vector3.Zero;
 
@@ -18,7 +18,7 @@ public class Enemy : KinematicBody
     // Shooting Variables
     private Timer firingTimer;
     private Node bulletContainer;
-    [Export] private PackedScene bullet;
+    private PackedScene bullet;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -26,6 +26,7 @@ public class Enemy : KinematicBody
         SeeableArea = (Area)GetNode("LineOfSight");
         firingTimer = (Timer)GetNode("FiringTimer");
         bulletContainer = GetNode("Bullet Container");
+        bullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullet.tscn");
         rayCast = (RayCast)GetNode("RayCast");
     }
 
@@ -80,16 +81,21 @@ public class Enemy : KinematicBody
         velocity.x += VectorToPlayerNormalized.x * movementSpeed;
         velocity.z += VectorToPlayerNormalized.z * movementSpeed;
 
-        // Clamp velocity
-        //velocity.x = Mathf.Clamp(velocity.x, -maxMovementSpeed, maxMovementSpeed);
-        //velocity.z = Mathf.Clamp(velocity.z, -maxMovementSpeed, maxMovementSpeed);
+        // Seperate horisontal velocity from vertical velocity
+        Vector2 horisontalVelocity = new Vector2(velocity.x, velocity.z);
+
+        // Clamp horisontal velocity
+        horisontalVelocity = horisontalVelocity.Normalized() * Mathf.Clamp(horisontalVelocity.Length(), -maxMovementSpeed, maxMovementSpeed);
+
+        // Merge horisontal and vertical velocity
+        velocity = new Vector3(horisontalVelocity.x, velocity.y, horisontalVelocity.y);
 
         // Move
         MoveAndSlide(velocity * delta);
     }
 
 
-    private void shoot(Vector3 heading) // TODO: Use the rayCast to check if player is behind wall and if so don't fire.
+    private void shoot(Vector3 heading)
     {		
 
         // Start timer/cooldown
@@ -100,8 +106,12 @@ public class Enemy : KinematicBody
 
         // Spawn new bullet instance
         Node b = bullet.Instance();
+        // Set speed
+        ((Player_Bullet)b).Speed = 0.1f;
         // Set current position and the direction it should travel
-        ((Enemy_Bullet)b).SetPosAndHeading(GetGlobalTransform().origin, heading);
+        ((Player_Bullet)b).SetPosAndHeading(GetGlobalTransform().origin, heading);
+        // Set parent
+        ((Player_Bullet)b).Parent = this;
         // Add it to the bullet container
         bulletContainer.AddChild(b);
     }
@@ -120,6 +130,16 @@ public class Enemy : KinematicBody
         {
             playerInFOV = false;
         }
+    }
+
+    public void Hit() // TODO: Implement health
+    {
+        Kill();
+    }
+    
+    public void Kill()
+    {
+        dead = true;
     }
 
 

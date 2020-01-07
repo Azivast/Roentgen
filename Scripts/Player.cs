@@ -61,7 +61,7 @@ public class Player : KinematicBody
   // Shooting variables
 	[Export] private Node gunParticles;
 	[Export] private Position3D firingPosition;
-	[Export] private PackedScene bullet;
+	private PackedScene bullet;
 	[Export] private Timer firingTimer;
 	private Node bulletContainer;
 
@@ -78,9 +78,11 @@ public class Player : KinematicBody
 			onGroundRaycast = (RayCast)GetNode("Head/GroundRayCast");
 			head =  (Spatial)GetNode("Head");
 			bulletContainer = GetNode("Bullet Container");
+			bullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullet.tscn");
 			firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
 			firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
 			HealthLabel = (Label)GetNode("HUD/Health");
+
 
 			// Set life to max life
 			Health = MaxHealth;
@@ -251,6 +253,8 @@ public class Player : KinematicBody
 		Node b = bullet.Instance();
 		// Set current position and the direction it should travel
 		((Player_Bullet)b).SetPosAndHeading(firingPosition.GetGlobalTransform().origin, -aim[2].Normalized());
+		// Set parent
+		((Player_Bullet)b).Parent = this;
 		// Add it to the bullet container
 		bulletContainer.AddChild(b);
 	}
@@ -299,10 +303,10 @@ public class Player : KinematicBody
 
 
 	// Function for taking damage
-	public void Damage(int damageAmount)
+	public void Hit()
 	{
 		// Apply damage to health and keep it within the interval of 0 and max Health.
-		Health = Mathf.Clamp((Health - damageAmount), 0, MaxHealth);
+		Health = Mathf.Clamp((Health - 10), 0, MaxHealth);
 
 		if (Health == 0) 
 		{

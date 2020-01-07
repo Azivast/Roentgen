@@ -1,14 +1,25 @@
 using Godot;
 using System;
 
-public class Player_Bullet : Area
+public class Player_Bullet : RigidBody
 {
-    [Export] private float speed = 1;
+    public float Speed = 1;
 	private Vector3 velocity = new Vector3();
 	// Direction of travel
 	private Vector3 heading;
 
-	public override void _Process(float delta)
+	private PackedScene hitParticle;
+	private PackedScene enemyHitParticle;
+
+	public Node Parent;
+
+	public override void _Ready()
+	{
+		hitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Hit Particle.tscn");
+		enemyHitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Enemy Hit Particle.tscn");
+	}
+
+	public override void _PhysicsProcess(float delta)
 	{
 		// Move bullet
 		SetTranslation(GetTranslation() + heading);
@@ -18,7 +29,7 @@ public class Player_Bullet : Area
 	{
 		SetTranslation(position);
 		heading = heading.Normalized();
-		this.heading = heading*speed;
+		this.heading = heading*Speed;
 	}
 
 	private void OnLifeTimeTimeout()
@@ -28,16 +39,26 @@ public class Player_Bullet : Area
 
 	private void OnBodyEntered(Node body)
 	{
-		if (body.Name == "Player") {}
+		Node b = hitParticle.Instance();
+		heading = Vector3.Zero;
 
-		else if (body.HasMethod("Kill"))
+		if (body == Parent) {}
+
+		else if (body.HasMethod("Hit"))
 		{
-			//((Enemy)body).Kill();
-			RemoveBullet();
+			((Enemy)body).Hit();
+			heading = Vector3.Zero;
+			Node p = hitParticle.Instance();
+			AddChild(p);
 		}
 
 		else
+		{
+			heading = Vector3.Zero;
+			Node p = hitParticle.Instance();
+			AddChild(p);
 			RemoveBullet();
+		}
 	}
 
 	private void RemoveBullet()

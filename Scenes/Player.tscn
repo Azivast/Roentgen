@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
-[ext_resource path="res://Scenes/Player Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/Head.cs" type="Script" id=3]
-[ext_resource path="res://Scenes/Camera.cs" type="Script" id=4]
-[ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=5]
-[ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/Head.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Camera.cs" type="Script" id=3]
+[ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
@@ -14,18 +13,17 @@ height = 0.89
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
-bullet = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206, 0 )
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
 [node name="RayCast" type="RayCast" parent="Head/Camera"]
 enabled = true
@@ -33,12 +31,12 @@ cast_to = Vector3( 0, 0, -4 )
 
 [node name="Gun" type="MeshInstance" parent="Head"]
 transform = Transform( 0.102521, 0, 0.0015808, 0, 0.102533, 0, -0.0015808, 0, 0.102521, 0.210356, 0, -0.177152 )
-mesh = ExtResource( 5 )
+mesh = ExtResource( 4 )
 material/0 = null
 material/1 = null
 material/2 = null
 material/3 = null
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 
 [node name="Firing Particles" type="Particles" parent="Head/Gun"]
 
@@ -62,11 +60,12 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 
 [node name="Crosshair" type="TextureRect" parent="HUD/CenterContainer"]
+visible = false
 margin_left = 928.0
 margin_top = 508.0
 margin_right = 992.0
 margin_bottom = 572.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="Health" type="Label" parent="HUD"]
 margin_left = 111.58

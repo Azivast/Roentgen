@@ -33,7 +33,7 @@ public class Enemy_Bullet : Area
         // Damage player if it hits them
         else if (body.HasMethod("Damage"))
         {
-            ((Player)body).Damage(10);
+            ((Player)body).Hit();
             RemoveBullet();
         }
 
