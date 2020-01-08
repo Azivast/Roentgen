@@ -5,8 +5,8 @@ public class Enemy : KinematicBody
 {
     private bool dead = false;
     
-    private float movementSpeed = 10f;
-    private float maxMovementSpeed = 100f;
+    [Export] private float movementSpeed = 10f;
+    [Export] private float maxMovementSpeed = 100f;
     private float gravity = -9.82f * 0.03f;
     Vector3 velocity = Vector3.Zero;
 
@@ -39,8 +39,10 @@ public class Enemy : KinematicBody
 
         // Point raycast to behind player.
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - rayCast.GlobalTransform.origin;
+        // Don't do anything else if player is too far away
+        // asd
         VectorToPlayer *= 1.5f;
-        rayCast.CastTo = VectorToPlayer;
+        //rayCast.CastTo = VectorToPlayer;
 
         // Check if enemy has clear line of sight to player and if so shoot
         if (rayCast.IsColliding())
@@ -60,10 +62,10 @@ public class Enemy : KinematicBody
     public override void  _PhysicsProcess(float delta)
     {
         // Apply gravity if in the air
-        if (!IsOnFloor())
-            velocity.y += gravity;
-        else
-            velocity.y = 0;
+        // if (!IsOnFloor())
+        //     velocity.y += gravity;
+        // else
+        //     velocity.y = 0;
 
         // Dont process other physics unless enemy is alive and player is present
         if (dead || playerInFOV == false || player is null) 
