@@ -61,9 +61,15 @@ public class Enemy : KinematicBody
 
     public override void  _PhysicsProcess(float delta)
     {
-        // Apply gravity if in the air
-        // if (!IsOnFloor())
-        //     velocity.y += gravity;
+        //Apply gravity if in the air
+        if (!IsOnFloor())
+        {
+            velocity.y += gravity;
+            MoveAndSlide (velocity * delta, Vector3.Up);
+        }
+
+
+            
         // else
         //     velocity.y = 0;
 
@@ -71,7 +77,7 @@ public class Enemy : KinematicBody
         if (dead || playerInFOV == false || player is null) 
         {
             // Move
-            MoveAndSlide(velocity * delta);
+            ;
             return;
         }
 	
@@ -93,7 +99,7 @@ public class Enemy : KinematicBody
         velocity = new Vector3(horisontalVelocity.x, velocity.y, horisontalVelocity.y);
 
         // Move
-        MoveAndSlide(velocity * delta);
+        MoveAndSlide(velocity * delta, Vector3.Up);
     }
 
 

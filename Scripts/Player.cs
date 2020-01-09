@@ -42,7 +42,7 @@ public class Player : KinematicBody
 	private bool flying = false;
 
 	// Walk variables
-	private float gravity = -9.82f * 0.03f;
+	private float gravity = -9.82f * 0.01f;
 	public float maxWalkSpeed = 3f;
 	// This variable doesn't work for some damn reason
 	// Searh for "maxSprintSpeed" further down and set it manually instead
@@ -258,14 +258,18 @@ public class Player : KinematicBody
 		// Add it to the bullet container
 		bulletContainer.AddChild(b);
 	}
-	
-	public override void _PhysicsProcess(float delta)
+
+		public override void _Process(float delta)
     {
-		look();
+				look();
 		if (flying)
 			fly(delta);
         else 
 			walk(delta);
+    }
+	
+	public override void _PhysicsProcess(float delta)
+    {
 
 		if (Input.IsActionPressed("shoot"))
 		{
