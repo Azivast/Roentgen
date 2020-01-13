@@ -13,7 +13,7 @@ flags_disable_ambient_light = true
 params_billboard_mode = 1
 params_billboard_keep_scale = true
 
-[node name="RigidBody" type="RigidBody"]
+[node name="Bullet" type="KinematicBody"]
 input_ray_pickable = false
 script = ExtResource( 1 )
 
@@ -29,4 +29,3 @@ texture = ExtResource( 2 )
 
 [node name="LifeTime" type="Timer" parent="."]
 autostart = true
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/floor1.png-d653ea02070d0746ce75e78fdea46471.s3tc.stex"
-path.etc2="res://.import/floor1.png-d653ea02070d0746ce75e78fdea46471.etc2.stex"
+path.s3tc="res://.import/door.png-daa3ac81719220de09c55f3c384cdd74.s3tc.stex"
+path.etc2="res://.import/door.png-daa3ac81719220de09c55f3c384cdd74.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/floor1.png"
-dest_files=[ "res://.import/floor1.png-d653ea02070d0746ce75e78fdea46471.s3tc.stex", "res://.import/floor1.png-d653ea02070d0746ce75e78fdea46471.etc2.stex" ]
+source_file="res://Textures/door.png"
+dest_files=[ "res://.import/door.png-daa3ac81719220de09c55f3c384cdd74.s3tc.stex", "res://.import/door.png-daa3ac81719220de09c55f3c384cdd74.etc2.stex" ]
 
 [params]
 
@@ -20,13 +20,13 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=2
+compress/normal_map=0
 flags/repeat=true
 flags/filter=false
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=1
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

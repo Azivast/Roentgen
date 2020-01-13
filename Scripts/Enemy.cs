@@ -3,6 +3,7 @@ using System;
 
 public class Enemy : KinematicBody
 {
+    private int health = 100;
     private bool dead = false;
     
     [Export] private float movementSpeed = 10f;
@@ -14,6 +15,12 @@ public class Enemy : KinematicBody
     private bool playerInFOV = false;
     private Area SeeableArea;
     private RayCast rayCast;
+
+    // Animation colum
+    [Export] int colum;
+    private Sprite3D sprite;
+    private AnimationPlayer animationPlayer;
+
 
     // Shooting Variables
     private Timer firingTimer;
@@ -28,6 +35,8 @@ public class Enemy : KinematicBody
         bulletContainer = GetNode("Bullet Container");
         bullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullet.tscn");
         rayCast = (RayCast)GetNode("RayCast");
+        sprite = (Sprite3D)GetNode("Sprite3D");
+        animationPlayer = (AnimationPlayer)GetNode("Sprite3D/AnimationPlayer");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,6 +66,8 @@ public class Enemy : KinematicBody
             }
         }
 
+        // Animate from first row
+        sprite.Frame = colum;
     }
 
     public override void  _PhysicsProcess(float delta)
@@ -129,6 +140,7 @@ public class Enemy : KinematicBody
 		if (body == player)
         {
             playerInFOV = true;
+            animationPlayer.Play("walk");
         }
 	}
 
@@ -137,17 +149,27 @@ public class Enemy : KinematicBody
         if (body == player)
         {
             playerInFOV = false;
+            animationPlayer.Seek(0, true);
+            animationPlayer.Stop();
+
         }
     }
 
     public void Hit() // TODO: Implement health
     {
+        health -= 33;
+
+        if (health <= 0)
         Kill();
     }
     
     public void Kill()
     {
         dead = true;
+        // Disable collision
+        ((CollisionShape)GetNode("CollisionShape")).Disabled = true;
+        // Change to dead sprite
+        sprite.Frame = 4;
     }
 
 

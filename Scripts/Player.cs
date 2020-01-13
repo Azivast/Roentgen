@@ -262,15 +262,15 @@ public class Player : KinematicBody
 		public override void _Process(float delta)
     {
 				look();
-		if (flying)
-			fly(delta);
-        else 
-			walk(delta);
     }
 	
 	public override void _PhysicsProcess(float delta)
     {
-
+		if (flying)
+			fly(delta);
+        else 
+			walk(delta);
+			
 		if (Input.IsActionPressed("shoot"))
 		{
 			if (firingTimer.IsStopped())

@@ -2,8 +2,6 @@
 
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=1]
 
-[node name="Player Bullet" type="Area"]
+[node name="Spatial" type="Spatial"]
 
 [node name="RigidBody" parent="." instance=ExtResource( 1 )]
-[connection signal="area_entered" from="." to="." method="OnBodyEntered"]
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

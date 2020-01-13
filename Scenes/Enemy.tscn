@@ -17,7 +17,7 @@ length = 0.8
 loop = true
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:anim_col")
+tracks/0/path = NodePath("..:colum")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -41,9 +41,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Sprite3D" type="Sprite3D" parent="." groups=[
-"EnemySprites",
-]]
+[node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.106337, 0 )
 material_override = SubResource( 2 )
 pixel_size = 0.027

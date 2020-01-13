@@ -24,7 +24,7 @@ data = PoolVector3Array( -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 
 [node name="Spatial" type="Spatial"]
 
 [node name="wall1" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.596489, 1.97898, -2.91252 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.605093, 1.97898, -2.91321 )
 use_in_baked_light = true
 mesh = ExtResource( 1 )
 material/0 = null
