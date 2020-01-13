@@ -22,7 +22,7 @@ public class DirectionalBillboard : Sprite3D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if (camera is null) 
+        if (camera == null) 
         {
             //GD.Print("Camera is null");
             return;

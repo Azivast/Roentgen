@@ -34,7 +34,7 @@ public class Enemy : KinematicBody
     public override void _Process(float delta)
     {
         // Dont process unless enemy is alive and player is present
-        if (dead || playerInFOV == false || player is null) 
+        if (dead || playerInFOV == false || player == null) 
             return;
 
         // Point raycast to behind player.
@@ -74,7 +74,7 @@ public class Enemy : KinematicBody
         //     velocity.y = 0;
 
         // Dont process other physics unless enemy is alive and player is present
-        if (dead || playerInFOV == false || player is null) 
+        if (dead || playerInFOV == false || player == null) 
         {
             // Move
             ;
