@@ -69,16 +69,6 @@ margin_right = 992.0
 margin_bottom = 572.0
 texture = ExtResource( 6 )
 
-[node name="Health" type="Label" parent="HUD"]
-margin_left = 111.58
-margin_top = 971.631
-margin_right = 390.58
-margin_bottom = 1069.63
-text = "Health: Null"
-align = 1
-valign = 1
-uppercase = true
-
 [node name="Ammo" type="TextureRect" parent="HUD"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -90,13 +80,23 @@ margin_right = -327.917
 texture = ExtResource( 7 )
 stretch_mode = 6
 
-[node name="Health3" type="TextureRect" parent="HUD"]
+[node name="Health" type="TextureRect" parent="HUD"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 304.478
-margin_top = -158.26
+margin_top = -159.075
 margin_right = 778.478
-margin_bottom = -0.260254
+margin_bottom = -1.07471
 rect_pivot_offset = Vector2( 410, 108 )
 texture = ExtResource( 8 )
 stretch_mode = 6
+
+[node name="Text" type="Label" parent="HUD/Health"]
+margin_left = -192.898
+margin_top = 49.8912
+margin_right = 86.1017
+margin_bottom = 147.89
+text = "Health: Null"
+align = 1
+valign = 1
+uppercase = true
