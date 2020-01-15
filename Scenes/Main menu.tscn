@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Button.cs" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Play" type="Button" parent="."]
+margin_left = 742.158
+margin_top = 380.0
+margin_right = 1093.16
+margin_bottom = 461.0
+action_mode = 0
+text = "PLAY"
+script = ExtResource( 1 )
+sceneToLoad = "Level1"
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 740.0
+margin_top = 498.716
+margin_right = 1091.0
+margin_bottom = 579.716
+action_mode = 0
+text = "EXIT"
+script = ExtResource( 1 )
+sceneToLoad = "exit"
+[connection signal="pressed" from="Play" to="Play" method="OnButtonPressed"]
+[connection signal="pressed" from="Exit" to="Exit" method="OnButtonPressed"]

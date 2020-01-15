@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Roentgen"
-run/main_scene="res://Scenes/Level1.tscn"
+run/main_scene="res://Scenes/Main menu.tscn"
 boot_splash/fullsize=false
 config/icon="res://icon.png"
 

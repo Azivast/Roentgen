@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Head.cs" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://Textures/hud ammo.png" type="Texture" id=7]
+[ext_resource path="res://Textures/hud health.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
@@ -76,3 +78,25 @@ text = "Health: Null"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="Ammo" type="TextureRect" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -801.917
+margin_top = -158.0
+margin_right = -327.917
+texture = ExtResource( 7 )
+stretch_mode = 6
+
+[node name="Health3" type="TextureRect" parent="HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 304.478
+margin_top = -158.26
+margin_right = 778.478
+margin_bottom = -0.260254
+rect_pivot_offset = Vector2( 410, 108 )
+texture = ExtResource( 8 )
+stretch_mode = 6
