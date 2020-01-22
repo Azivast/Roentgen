@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Textures/ammo box.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/AmmoBox.cs" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_billboard_mode = 2
+params_billboard_keep_scale = true
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.277148
+height = 0.4399
+
+[node name="AmmoBox" type="Sprite3D"]
+material_override = SubResource( 1 )
+pixel_size = 0.02
+shaded = true
+double_sided = false
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.096, 0 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Area" to="." method="OnAreaBodyEntered"]

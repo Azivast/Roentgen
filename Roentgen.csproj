@@ -53,6 +53,7 @@
     <Compile Include="Scenes\Button.cs" />
     <Compile Include="Scenes\Camera.cs" />
     <Compile Include="Scenes\Level1.cs" />
+    <Compile Include="Scripts\AmmoBox.cs" />
     <Compile Include="Scripts\DirectionalBillboard.cs" />
     <Compile Include="Scripts\Door.cs" />
     <Compile Include="Scripts\Enemy.cs" />

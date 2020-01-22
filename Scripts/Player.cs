@@ -28,6 +28,7 @@ public class Player : KinematicBody
 
 	// HUD variables
 	private Label HealthLabel;
+	private Label AmmoLabel;
 
 	// Mouse variables
 	[Export] public static float mouseSensitivity = 0.003f;
@@ -59,6 +60,7 @@ public class Player : KinematicBody
 	private int maxSlopAngle = 25;
 
   // Shooting variables
+	[Export] private int ammo = 0;
 	[Export] private Node gunParticles;
 	[Export] private Position3D firingPosition;
 	private PackedScene bullet;
@@ -81,7 +83,8 @@ public class Player : KinematicBody
 			bullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullet.tscn");
 			firingPosition = (Position3D)GetNode("Head/Gun/Firing Position");
 			firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
-			HealthLabel = (Label)GetNode("HUD/Health");
+			HealthLabel = (Label)GetNode("HUD/Health/Text");
+			AmmoLabel = (Label)GetNode("HUD/Ammo/Text");
 
 
 			// Set life to max life
@@ -257,11 +260,17 @@ public class Player : KinematicBody
 		((Player_Bullet)b).Parent = this;
 		// Add it to the bullet container
 		bulletContainer.AddChild(b);
+
+		ammo--;
 	}
 
 		public override void _Process(float delta)
     {
-				look();
+		look();
+
+		// Update text on HUD
+		HealthLabel.Text = Health.ToString();
+		AmmoLabel.Text = ammo.ToString();
     }
 	
 	public override void _PhysicsProcess(float delta)
@@ -271,14 +280,11 @@ public class Player : KinematicBody
         else 
 			walk(delta);
 			
-		if (Input.IsActionPressed("shoot"))
+		if (Input.IsActionPressed("shoot") && ammo > 0)
 		{
 			if (firingTimer.IsStopped())
 				shoot();
 		}
-
-		// Update text on HUD
-		HealthLabel.Text = Health.ToString();
 
 		// Chek if player tries to interact using E
 		if (Input.IsActionJustPressed("interact")) 
@@ -320,5 +326,9 @@ public class Player : KinematicBody
 	public void Kill()
 	{
 		GetTree().ChangeScene("res://Scenes/Level1.tscn");
+	}
+	public void AddAmmo(int amount)
+	{
+		ammo += amount;
 	}
 }
