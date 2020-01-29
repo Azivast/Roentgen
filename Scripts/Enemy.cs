@@ -5,6 +5,7 @@ public class Enemy : KinematicBody
 {
     private int health = 100;
     private bool dead = false;
+    private AudioStreamPlayer3D deathAudio;
     
     [Export] private float movementSpeed = 10f;
     [Export] private float maxMovementSpeed = 100f;
@@ -26,6 +27,7 @@ public class Enemy : KinematicBody
     private Timer firingTimer;
     private Node bulletContainer;
     private PackedScene bullet;
+    private AudioStreamPlayer3D firingAudio;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -37,21 +39,22 @@ public class Enemy : KinematicBody
         rayCast = (RayCast)GetNode("RayCast");
         sprite = (Sprite3D)GetNode("Sprite3D");
         animationPlayer = (AnimationPlayer)GetNode("Sprite3D/AnimationPlayer");
+        deathAudio = (AudioStreamPlayer3D)GetNode("Death audio");
+        firingAudio = (AudioStreamPlayer3D)GetNode("Firing audio");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         // Dont process unless enemy is alive and player is present
-        if (dead || playerInFOV == false || player == null) 
+        if (playerInFOV == false || dead || player == null) 
             return;
 
         // Point raycast to behind player.
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - rayCast.GlobalTransform.origin;
         // Don't do anything else if player is too far away
-        // asd
         VectorToPlayer *= 1.5f;
-        //rayCast.CastTo = VectorToPlayer;
+        rayCast.CastTo = VectorToPlayer;
 
         // Check if enemy has clear line of sight to player and if so shoot
         if (rayCast.IsColliding())
@@ -62,7 +65,10 @@ public class Enemy : KinematicBody
             {
                 // Shoot
                 if (firingTimer.IsStopped())
+                {
                     shoot(VectorToPlayer);
+                    firingAudio.Play();
+                }
             }
         }
 
@@ -160,7 +166,11 @@ public class Enemy : KinematicBody
         health -= 33;
 
         if (health <= 0)
-        Kill();
+        {
+            Kill();
+            deathAudio.Play();
+        }
+        
     }
     
     public void Kill()

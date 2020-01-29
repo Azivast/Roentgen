@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Head.cs" type="Script" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://Textures/hud ammo.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/HUD font.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Textures/hud health.png" type="Texture" id=9]
+[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
@@ -59,6 +62,7 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
+visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 
@@ -112,3 +116,12 @@ text = "00"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="Firing audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Hit audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="Ammo audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )

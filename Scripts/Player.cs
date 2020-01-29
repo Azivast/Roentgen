@@ -66,6 +66,9 @@ public class Player : KinematicBody
 	private PackedScene bullet;
 	[Export] private Timer firingTimer;
 	private Node bulletContainer;
+	private AudioStreamPlayer firingSound;
+	private AudioStreamPlayer hitSound;
+	private AudioStreamPlayer addAmmoSound;
 
 	private Spatial head;
 	// Where the player is looking
@@ -85,8 +88,10 @@ public class Player : KinematicBody
 			firingTimer = (Timer)GetNode("Head/Gun/FiringTimer");
 			HealthLabel = (Label)GetNode("HUD/Health/Text");
 			AmmoLabel = (Label)GetNode("HUD/Ammo/Text");
-
-
+			firingSound = (AudioStreamPlayer)GetNode("Firing audio");
+			hitSound = (AudioStreamPlayer)GetNode("Hit audio");
+			addAmmoSound = (AudioStreamPlayer)GetNode("Ammo audio");
+			
 			// Set life to max life
 			Health = MaxHealth;
 
@@ -252,6 +257,9 @@ public class Player : KinematicBody
 		// Play firing effects once
 		//((Particles)gunParticles).Emitting = true;
 
+		// Play firing sound
+		firingSound.Play();
+
 		// Spawn new bullet instance
 		Node b = bullet.Instance();
 		// Set current position and the direction it should travel
@@ -318,6 +326,9 @@ public class Player : KinematicBody
 		// Apply damage to health and keep it within the interval of 0 and max Health.
 		Health = Mathf.Clamp((Health - 10), 0, MaxHealth);
 
+		// Play hit sound
+		hitSound.Play();
+
 		if (Health == 0) 
 		{
 			Kill();
@@ -330,5 +341,6 @@ public class Player : KinematicBody
 	public void AddAmmo(int amount)
 	{
 		ammo += amount;
+		addAmmoSound.Play();
 	}
 }
