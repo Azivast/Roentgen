@@ -28,6 +28,7 @@ public class Enemy : KinematicBody
     private Node bulletContainer;
     private PackedScene bullet;
     private AudioStreamPlayer3D firingAudio;
+    private Node muzzleFlashLight;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -41,6 +42,7 @@ public class Enemy : KinematicBody
         animationPlayer = (AnimationPlayer)GetNode("Sprite3D/AnimationPlayer");
         deathAudio = (AudioStreamPlayer3D)GetNode("Death audio");
         firingAudio = (AudioStreamPlayer3D)GetNode("Firing audio");
+        muzzleFlashLight = GetNode("Firing light");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,6 +51,9 @@ public class Enemy : KinematicBody
         // Dont process unless enemy is alive and player is present
         if (playerInFOV == false || dead || player == null) 
             return;
+
+        // Disable muzzle flash incase it's lite
+        ((OmniLight)muzzleFlashLight).Visible = false;
 
         // Point raycast to behind player.
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - rayCast.GlobalTransform.origin;
@@ -139,6 +144,9 @@ public class Enemy : KinematicBody
         ((Player_Bullet)b).Parent = this;
         // Add it to the bullet container
         bulletContainer.AddChild(b);
+
+        // Light muzzle flash
+        ((OmniLight)muzzleFlashLight).Visible = true;
     }
 
     private void OnSeeableAreaEntered(Node body)
