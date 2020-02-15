@@ -336,7 +336,7 @@ public class Player : KinematicBody
 	}
 	public void Kill()
 	{
-		GetTree().ChangeScene("res://Scenes/Level1.tscn");
+		GetTree().ChangeScene("res://Scenes/Game Over.tscn");
 	}
 	public void AddAmmo(int amount)
 	{

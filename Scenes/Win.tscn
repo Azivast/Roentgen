@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/GameOver.cs" type="Script" id=1]
+[ext_resource path="res://Textures/bullet.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/Button.cs" type="Script" id=4]
+[ext_resource path="res://Fonts/editundo.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Mesh Libraries/gridmap.meshlib" type="MeshLibrary" id=6]
+[ext_resource path="res://Textures/graffiti1.png" type="Texture" id=7]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 10, 10 )
+flag_disable_z = true
+spread = 35.52
+gravity = Vector3( 0, -98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = ExtResource( 5 )
+
+[node name="Control" type="Control"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Fire" type="Particles2D" parent="."]
+visible = false
+position = Vector2( 948.213, 1124.06 )
+amount = 500
+lifetime = 4.0
+draw_order = 1
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="Return" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -250.0
+margin_top = 720.0
+margin_right = 252.0
+margin_bottom = 801.0
+rect_pivot_offset = Vector2( 185.501, 150 )
+custom_fonts/font = ExtResource( 3 )
+action_mode = 0
+text = "Return to main menu"
+script = ExtResource( 4 )
+sceneToLoad = "Main menu"
+
+[node name="Try again" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -175.501
+margin_top = 518.731
+margin_right = 175.499
+margin_bottom = 599.731
+rect_pivot_offset = Vector2( 185.501, 150 )
+custom_fonts/font = ExtResource( 3 )
+action_mode = 0
+text = "Play Again"
+script = ExtResource( 4 )
+sceneToLoad = "Level1"
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -261.0
+margin_top = 193.963
+margin_right = 261.0
+margin_bottom = 309.963
+custom_fonts/font = SubResource( 4 )
+text = "You win!"
+align = 1
+valign = 1
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="GridMap" type="GridMap" parent="Spatial"]
+mesh_library = ExtResource( 6 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 536870912, 2, 0, 0, 3, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, -536870912, 0, 2, 0, 1, 2, 0, 2, 2, -1610612736, 3, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 65534, -1610612736, 1, 65534, -1610612736, 2, 65534, 0, 3, 65534, 0, 65533, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="Camera" type="Camera" parent="Spatial"]
+transform = Transform( 0.942139, 0.307863, -0.132642, 0.0542951, 0.250318, 0.96664, 0.330795, -0.917911, 0.219119, -0.413962, 2.57007, 1.74341 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, -1.21416, 1.00905, 1.1306 )
+pixel_size = 0.03
+texture = ExtResource( 7 )
+[connection signal="pressed" from="Return" to="Return" method="OnButtonPressed"]
+[connection signal="pressed" from="Try again" to="Try again" method="OnButtonPressed"]
