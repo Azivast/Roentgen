@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Head.cs" type="Script" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Material/gun material.tres" type="Material" id=5]
 [ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://Textures/hud ammo.png" type="Texture" id=8]
-[ext_resource path="res://Fonts/HUD font.tres" type="DynamicFont" id=9]
-[ext_resource path="res://Textures/hud health.png" type="Texture" id=10]
-[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=11]
-[ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=12]
-[ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=13]
+[ext_resource path="res://Textures/HUD Flash.png" type="Texture" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://Textures/hud ammo.png" type="Texture" id=9]
+[ext_resource path="res://Fonts/HUD font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Textures/hud health.png" type="Texture" id=11]
+[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=14]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
@@ -23,24 +24,7 @@ resource_name = "Damage"
 length = 0.1
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("DamageRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.02, 0.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.694118, 0, 0, 0 ), Color( 0.694118, 0, 0, 0.392157 ), Color( 0.694118, 0, 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "Pick Up"
-length = 0.1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("PickUpRect:color")
+tracks/0/path = NodePath("DamageRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -49,7 +33,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.01, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 0.615686, 0, 0, 0 ), Color( 0.615686, 0, 0, 1 ), Color( 0.615686, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Pick Up"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("PickUpRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="Player" type="KinematicBody"]
@@ -96,6 +97,20 @@ one_shot = true
 margin_right = 1920.0
 margin_bottom = 1080.0
 
+[node name="PickUpRect" type="TextureRect" parent="HUD"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="DamageRect" type="TextureRect" parent="HUD"]
+modulate = Color( 0.615686, 0, 0, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
 visible = false
 margin_right = 1920.0
@@ -106,7 +121,7 @@ margin_left = 928.0
 margin_top = 508.0
 margin_right = 992.0
 margin_bottom = 572.0
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Ammo" type="TextureRect" parent="HUD"]
 anchor_left = 1.0
@@ -117,7 +132,7 @@ margin_left = -476.156
 margin_top = -159.108
 margin_right = -2.15576
 margin_bottom = -1.10803
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 stretch_mode = 6
 
 [node name="Text" type="Label" parent="HUD/Ammo"]
@@ -125,7 +140,7 @@ margin_left = 58.9493
 margin_top = 29.728
 margin_right = 282.949
 margin_bottom = 127.728
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 text = "00"
 align = 1
 valign = 1
@@ -138,7 +153,7 @@ margin_top = -158.0
 margin_right = 474.0
 margin_bottom = 0.000366211
 rect_pivot_offset = Vector2( 410, 108 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 stretch_mode = 6
 
 [node name="Text" type="Label" parent="HUD/Health"]
@@ -146,31 +161,21 @@ margin_left = 211.302
 margin_top = 28.6199
 margin_right = 435.302
 margin_bottom = 126.62
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
 text = "00"
 align = 1
 valign = 1
 uppercase = true
-
-[node name="DamageRect" type="ColorRect" parent="HUD"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.694118, 0, 0, 0 )
-
-[node name="PickUpRect" type="ColorRect" parent="HUD"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD"]
 anims/Damage = SubResource( 2 )
 "anims/Pick Up" = SubResource( 3 )
 
 [node name="Firing audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-
-[node name="Hit audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 
-[node name="Ammo audio" type="AudioStreamPlayer" parent="."]
+[node name="Hit audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+
+[node name="Ammo audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
