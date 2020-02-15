@@ -1,19 +1,18 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Head.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Camera.cs" type="Script" id=3]
 [ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://Material/gun material.tres" type="Material" id=5]
-[ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=6]
-[ext_resource path="res://Textures/HUD Flash.png" type="Texture" id=7]
-[ext_resource path="res://icon.png" type="Texture" id=8]
-[ext_resource path="res://Textures/hud ammo.png" type="Texture" id=9]
-[ext_resource path="res://Fonts/HUD font.tres" type="DynamicFont" id=10]
-[ext_resource path="res://Textures/hud health.png" type="Texture" id=11]
-[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=12]
-[ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=13]
-[ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=14]
+[ext_resource path="res://Scripts/WeaponSway.cs" type="Script" id=5]
+[ext_resource path="res://Textures/HUD Flash.png" type="Texture" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://Textures/hud ammo.png" type="Texture" id=8]
+[ext_resource path="res://Fonts/HUD font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Textures/hud health.png" type="Texture" id=10]
+[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=13]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
@@ -74,11 +73,11 @@ cast_to = Vector3( 0, 0, -4 )
 [node name="Gun" type="MeshInstance" parent="Head"]
 transform = Transform( 0.102521, 0, 0.0015808, 0, 0.102533, 0, -0.0015808, 0, 0.102521, 0.210356, 0, -0.177152 )
 mesh = ExtResource( 4 )
-material/0 = ExtResource( 5 )
-material/1 = ExtResource( 5 )
-material/2 = ExtResource( 5 )
-material/3 = ExtResource( 5 )
-script = ExtResource( 6 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+script = ExtResource( 5 )
 
 [node name="Firing Particles" type="Particles" parent="Head/Gun"]
 
@@ -101,14 +100,14 @@ margin_bottom = 1080.0
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 expand = true
 
 [node name="DamageRect" type="TextureRect" parent="HUD"]
 modulate = Color( 0.615686, 0, 0, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 expand = true
 
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
@@ -121,7 +120,7 @@ margin_left = 928.0
 margin_top = 508.0
 margin_right = 992.0
 margin_bottom = 572.0
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="Ammo" type="TextureRect" parent="HUD"]
 anchor_left = 1.0
@@ -132,7 +131,7 @@ margin_left = -476.156
 margin_top = -159.108
 margin_right = -2.15576
 margin_bottom = -1.10803
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 stretch_mode = 6
 
 [node name="Text" type="Label" parent="HUD/Ammo"]
@@ -140,7 +139,7 @@ margin_left = 58.9493
 margin_top = 29.728
 margin_right = 282.949
 margin_bottom = 127.728
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 9 )
 text = "00"
 align = 1
 valign = 1
@@ -153,7 +152,7 @@ margin_top = -158.0
 margin_right = 474.0
 margin_bottom = 0.000366211
 rect_pivot_offset = Vector2( 410, 108 )
-texture = ExtResource( 11 )
+texture = ExtResource( 10 )
 stretch_mode = 6
 
 [node name="Text" type="Label" parent="HUD/Health"]
@@ -161,7 +160,7 @@ margin_left = 211.302
 margin_top = 28.6199
 margin_right = 435.302
 margin_bottom = 126.62
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 9 )
 text = "00"
 align = 1
 valign = 1
@@ -172,10 +171,10 @@ anims/Damage = SubResource( 2 )
 "anims/Pick Up" = SubResource( 3 )
 
 [node name="Firing audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource( 11 )
 
 [node name="Hit audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
+stream = ExtResource( 12 )
 
 [node name="Ammo audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
+stream = ExtResource( 13 )

@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[resource]
+default_font = ExtResource( 1 )
+"Button/colors/Button Color" = Color( 1, 1, 1, 1 )
+Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.709804, 0.866667, 0.490196, 1 )
+Button/colors/font_color_pressed = Color( 0.235294, 0.266667, 0.192157, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 13 )
+Button/styles/focus = SubResource( 14 )
+Button/styles/hover = SubResource( 15 )
+Button/styles/normal = SubResource( 16 )
+Button/styles/pressed = SubResource( 17 )

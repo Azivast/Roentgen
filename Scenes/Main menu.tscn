@@ -1,11 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Textures/bullet.png" type="Texture" id=1]
-[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Scenes/Button.cs" type="Script" id=3]
-[ext_resource path="res://Fonts/editundo.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Mesh Libraries/gridmap.meshlib" type="MeshLibrary" id=5]
-[ext_resource path="res://Textures/graffiti1.png" type="Texture" id=6]
+[ext_resource path="res://Themes/Menu theme.tres" type="Theme" id=2]
+[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/Button.cs" type="Script" id=4]
+[ext_resource path="res://Fonts/editundo.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Mesh Libraries/gridmap.meshlib" type="MeshLibrary" id=6]
+[ext_resource path="res://Textures/graffiti1.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Explosive Barrel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Ammo Box.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=11]
+[ext_resource path="res://Textures/vine1.png" type="Texture" id=12]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -24,13 +30,58 @@ orbit_velocity_random = 0.0
 linear_accel = 1.0
 color_ramp = SubResource( 2 )
 
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
 [sub_resource type="DynamicFont" id=4]
-size = 100
-font_data = ExtResource( 4 )
+size = 120
+extra_spacing_char = 4
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 40
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "Sway"
+length = 7.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -29.342, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.7, 3.5, 5, 7 ),
+"transitions": PoolRealArray( 1, 1.07177, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.468043, 1.91789, 0.728084 ), Vector3( 0.468043, 1.91789, 0.728084 ), Vector3( 0.488272, 1.91789, 0.741247 ), Vector3( 0.467519, 1.91281, 0.72889 ), Vector3( 0.468043, 1.91789, 0.728084 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 2
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -48,49 +99,105 @@ texture = ExtResource( 1 )
 [node name="Play" type="Button" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -175.501
-margin_top = 421.421
-margin_right = 175.501
-margin_bottom = 502.421
-custom_fonts/font = ExtResource( 2 )
-action_mode = 0
-text = "PLAY"
-script = ExtResource( 3 )
+margin_left = -830.0
+margin_top = 410.0
+margin_right = -478.998
+margin_bottom = 491.0
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 3 )
+text = "Start game"
+align = 0
+script = ExtResource( 4 )
 sceneToLoad = "Level1"
 
 [node name="Instructions" type="Button" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -175.5
-margin_top = 563.111
-margin_right = 175.502
-margin_bottom = 644.111
-custom_fonts/font = ExtResource( 2 )
-action_mode = 0
+margin_left = -829.999
+margin_top = 490.0
+margin_right = -478.997
+margin_bottom = 571.0
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 3 )
 text = "INSTRUCTIONS"
-script = ExtResource( 3 )
+align = 0
+script = ExtResource( 4 )
+sceneToLoad = "Instructions"
+
+[node name="Credits" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -829.999
+margin_top = 571.0
+margin_right = -478.997
+margin_bottom = 652.0
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 3 )
+text = "Credits"
+align = 0
+script = ExtResource( 4 )
+sceneToLoad = "Instructions"
+
+[node name="Options" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -829.999
+margin_top = 652.0
+margin_right = -478.997
+margin_bottom = 733.0
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 3 )
+text = "Options"
+align = 0
+script = ExtResource( 4 )
 sceneToLoad = "Instructions"
 
 [node name="Exit" type="Button" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -175.501
-margin_top = 710.0
-margin_right = 175.499
-margin_bottom = 791.0
-custom_fonts/font = ExtResource( 2 )
-action_mode = 0
-text = "EXIT"
-script = ExtResource( 3 )
+margin_left = -830.0
+margin_top = 730.0
+margin_right = -479.0
+margin_bottom = 811.0
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 3 )
+text = "Quit"
+align = 0
+script = ExtResource( 4 )
 sceneToLoad = "exit"
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -261.0
-margin_top = 193.963
-margin_right = 261.0
-margin_bottom = 309.963
+margin_left = -914.268
+margin_top = 225.423
+margin_right = -392.268
+margin_bottom = 341.423
 custom_fonts/font = SubResource( 4 )
 text = "ROENTGEN"
 align = 1
@@ -111,22 +218,53 @@ valign = 1
 [node name="Spatial" type="Spatial" parent="."]
 
 [node name="GridMap" type="GridMap" parent="Spatial"]
-mesh_library = ExtResource( 5 )
+mesh_library = ExtResource( 6 )
 cell_size = Vector3( 1, 1, 1 )
 data = {
-"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 536870912, 3, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 1, 0, 1, 1, -1610612736, 2, 1, 0, 3, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 2, -1610612736, 1, 2, 0, 2, 2, 0, 3, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 65534, 0, 1, 65534, -536870912, 2, 65534, 0, 3, 65534, 0, 65533, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+"cells": PoolIntArray( 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 65539, 0, 0, 131075, 0, 0, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 0, 262142, 0, 1, 262143, 0, 1, 0, 1, 2, 1, 1, 2, 2, 1, 2, 3, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 2, 65539, 1, 0, 131075, 1, 0, 196608, 1, 1, 196609, 1, 1, 196610, 1, 1, 196611, 1, 0, 262141, 1, 1, 262142, 1, 1, 262143, 1, 1, 0, 2, 2, 1, 2, 2, 2, 2, 2, 3, 2, 2, 65533, 2, 2, 65534, 2, 2, 65535, 2, 2, 65539, 2, 0, 131075, 2, 0, 196608, 2, 1, 196609, 2, 1, 196610, 2, 1, 262142, 2, 1, 262143, 2, 1, 0, 3, 2, 1, 3, 2, 2, 3, 2, 3, 3, 2, 65533, 3, 0, 65534, 3, 2, 65535, 3, 2, 65539, 3, 0, 131075, 3, 0, 65533, 65533, 2, 65534, 65533, 2, 0, 65534, 2, 1, 65534, 2, 2, 65534, 2, 3, 65534, 2, 65533, 65534, 2, 65534, 65534, 2, 65535, 65534, 2, 65536, 65534, 0, 65537, 65534, 0, 65538, 65534, 0, 131070, 65534, 0, 131071, 65534, 0, 131072, 65534, 0, 131073, 65534, 0, 131074, 65534, 0, 196606, 65534, 0, 196607, 65534, 0, 196608, 65534, 0, 196609, 65534, 0, 196610, 65534, 0, 262142, 65534, 0, 262143, 65534, 0, 0, 65535, 2, 1, 65535, 2, 2, 65535, 2, 3, 65535, 2, 65533, 65535, 2, 65534, 65535, 2, 65535, 65535, 2, 65539, 65535, 0, 131075, 65535, 0, 196608, 65535, 1, 196609, 65535, 1, 196610, 65535, 1610612737, 196611, 65535, 0, 262142, 65535, 1, 262143, 65535, 1 )
 }
 __meta__ = {
-"_editor_clip_": 0
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 3, 0 )
 }
 
 [node name="Camera" type="Camera" parent="Spatial"]
-transform = Transform( 0.942139, 0.307863, -0.132642, 0.0542951, 0.250318, 0.96664, 0.330795, -0.917911, 0.219119, -0.413962, 2.57007, 1.74341 )
+transform = Transform( 0.87171, 0, -0.490022, 0, 1, 0, 0.490022, 0, 0.87171, 0.468043, 1.91789, 0.728084 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial/Camera"]
+autoplay = "Sway"
+playback_process_mode = 0
+anims/Sway = SubResource( 12 )
 
 [node name="Sprite3D" type="Sprite3D" parent="Spatial"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, -1.21416, 1.00905, 1.1306 )
+transform = Transform( 1, 0, 0, 0, 1, 1.06581e-014, 0, -1.06581e-014, 1, 0.786467, 2.03247, -0.979168 )
 pixel_size = 0.03
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
+
+[node name="Torch" parent="Spatial" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-008, -1, -1.06581e-014, 1, -4.37114e-008, -4.65882e-022, 0, -1.06581e-014, 1, 1.51128, 2.62416, -0.999106 )
+
+[node name="Barrel" parent="Spatial" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53932, 1.47476, -0.690989 )
+
+[node name="AmmoBox" parent="Spatial" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77747, 1.31642, -0.575881 )
+
+[node name="AmmoBox2" parent="Spatial" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64967, 1.31642, 0.118154 )
+
+[node name="CSGMesh" type="CSGMesh" parent="Spatial"]
+transform = Transform( 0.0849767, 0.0331972, -0.025475, -0.0318131, 0.0137917, -0.0881464, -0.0271837, 0.0876345, 0.0235225, 2.39644, 1.14095, -0.366851 )
+mesh = ExtResource( 11 )
+
+[node name="Sprite3D2" type="Sprite3D" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.511, 2.32969, -0.0897612 )
+material_override = SubResource( 6 )
+pixel_size = 0.02
+double_sided = false
+texture = ExtResource( 12 )
 [connection signal="pressed" from="Play" to="Play" method="OnButtonPressed"]
 [connection signal="pressed" from="Instructions" to="Instructions" method="OnButtonPressed"]
+[connection signal="pressed" from="Credits" to="Credits" method="OnButtonPressed"]
+[connection signal="pressed" from="Options" to="Options" method="OnButtonPressed"]
 [connection signal="pressed" from="Exit" to="Exit" method="OnButtonPressed"]
