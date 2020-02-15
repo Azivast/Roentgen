@@ -63,6 +63,7 @@
     <Compile Include="Scripts\Head.cs" />
     <Compile Include="Scripts\Player_Bullet.cs" />
     <Compile Include="Scripts\WeaponSway.cs" />
+    <Compile Include="Scripts\WinButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

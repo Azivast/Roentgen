@@ -114,10 +114,21 @@ public class Player : KinematicBody
 	
 		try 
 		{
-			if (collider.HasMethod("Interact")) 
+			// if (collider.HasMethod("Interact")) 
+			// {
+			// 	Console.WriteLine("Door opened.");
+			// 	((WinButton)collider).Interact();
+			// 	((Door)collider).Interact();
+				
+			// }
+			if (collider is Door)
 			{
 				Console.WriteLine("Door opened.");
-				((Door)collider).Interact();
+				((Door)collider).Interact();	
+			}
+			else if (collider is WinButton)
+			{
+				((WinButton)collider).Interact();
 			}
 		}
 
