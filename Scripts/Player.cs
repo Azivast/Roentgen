@@ -340,6 +340,9 @@ public class Player : KinematicBody
 		// Play hit sound
 		hitSound.Play();
 
+		// Play animation
+		((AnimationPlayer)GetNode("HUD/AnimationPlayer")).Play("Damage");
+
 		if (Health == 0) 
 		{
 			Kill();
@@ -353,5 +356,7 @@ public class Player : KinematicBody
 	{
 		ammo += amount;
 		addAmmoSound.Play();
+		// Play animation
+		((AnimationPlayer)GetNode("HUD/AnimationPlayer")).Play("Pick Up");
 	}
 }
