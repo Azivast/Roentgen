@@ -9,7 +9,7 @@ public class Player_Bullet : KinematicBody
 	private Vector3 heading;
 
 	private PackedScene hitParticle;
-	private PackedScene enemyHitParticle;
+	private PackedScene humanHitParticle;
 
 	public Node Parent;
 	private CollisionShape parentCollisionShape;
@@ -17,7 +17,7 @@ public class Player_Bullet : KinematicBody
 	public override void _Ready()
 	{
 		hitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Hit Particle.tscn");
-		enemyHitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Enemy Hit Particle.tscn");
+		humanHitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Human Hit Particle.tscn");
 		parentCollisionShape = (CollisionShape)Parent.GetNode("CollisionShape");
 	}
 
@@ -57,11 +57,13 @@ public class Player_Bullet : KinematicBody
 
 		
 		heading = Vector3.Zero;
-		Node b = hitParticle.Instance();
-		((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
 
 		if (collision.Collider.HasMethod("Hit"))
 		{
+			Node b = humanHitParticle.Instance();
+			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
+			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position);
+
 			try 
 			{
 				((Enemy)collision.Collider).Hit();
@@ -71,14 +73,18 @@ public class Player_Bullet : KinematicBody
 			catch
 			{
 				((Player)collision.Collider).Hit();
-				((Player)collision.Collider).AddChild(b);
+				//((Player)collision.Collider).AddChild(b);
 				RemoveBullet();
 			}
 		}
 
 		else
 		{
-			AddChild(b);
+			GD.Print("HIT");
+			Node b = hitParticle.Instance();
+			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
+			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position);
+			((Node)collision.Collider).AddChild(b);
 			RemoveBullet();
 		}
 	}

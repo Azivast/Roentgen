@@ -25,31 +25,32 @@ emission_box_extents = Vector3( 1000, 10, 10 )
 flag_disable_z = true
 spread = 35.52
 gravity = Vector3( 0, -98, 0 )
+angular_velocity = 4.14784e-043
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 1.0
 color_ramp = SubResource( 2 )
 
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
 [sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=8]
 
-[sub_resource type="StyleBoxEmpty" id=9]
-
-[sub_resource type="StyleBoxEmpty" id=10]
-
-[sub_resource type="StyleBoxEmpty" id=11]
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=9]
 size = 120
 extra_spacing_char = 4
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=10]
 size = 40
 font_data = ExtResource( 5 )
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 resource_name = "Sway"
 length = 7.0
 loop = true
@@ -78,7 +79,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0.468043, 1.91789, 0.728084 ), Vector3( 0.468043, 1.91789, 0.728084 ), Vector3( 0.488272, 1.91789, 0.741247 ), Vector3( 0.467519, 1.91281, 0.72889 ), Vector3( 0.468043, 1.91789, 0.728084 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
@@ -104,11 +105,11 @@ margin_top = 410.0
 margin_right = -478.998
 margin_bottom = 491.0
 theme = ExtResource( 2 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 3 )
 text = "Start game"
 align = 0
@@ -123,11 +124,11 @@ margin_top = 490.0
 margin_right = -478.997
 margin_bottom = 571.0
 theme = ExtResource( 2 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 3 )
 text = "INSTRUCTIONS"
 align = 0
@@ -142,11 +143,11 @@ margin_top = 571.0
 margin_right = -478.997
 margin_bottom = 652.0
 theme = ExtResource( 2 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 3 )
 text = "Credits"
 align = 0
@@ -161,11 +162,11 @@ margin_top = 652.0
 margin_right = -478.997
 margin_bottom = 733.0
 theme = ExtResource( 2 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 3 )
 text = "Options"
 align = 0
@@ -180,11 +181,11 @@ margin_top = 730.0
 margin_right = -479.0
 margin_bottom = 811.0
 theme = ExtResource( 2 )
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 3 )
 text = "Quit"
 align = 0
@@ -198,7 +199,7 @@ margin_left = -914.268
 margin_top = 225.423
 margin_right = -392.268
 margin_bottom = 341.423
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 9 )
 text = "ROENTGEN"
 align = 1
 valign = 1
@@ -210,7 +211,7 @@ margin_left = 590.0
 margin_top = 999.0
 margin_right = 953.0
 margin_bottom = 1076.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 10 )
 text = "Made by Olle Astré"
 align = 1
 valign = 1
@@ -221,7 +222,7 @@ valign = 1
 mesh_library = ExtResource( 6 )
 cell_size = Vector3( 1, 1, 1 )
 data = {
-"cells": PoolIntArray( 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 65539, 0, 0, 131075, 0, 0, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 0, 262142, 0, 1, 262143, 0, 1, 0, 1, 2, 1, 1, 2, 2, 1, 2, 3, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 2, 65539, 1, 0, 131075, 1, 0, 196608, 1, 1, 196609, 1, 1, 196610, 1, 1, 196611, 1, 0, 262141, 1, 1, 262142, 1, 1, 262143, 1, 1, 0, 2, 2, 1, 2, 2, 2, 2, 2, 3, 2, 2, 65533, 2, 2, 65534, 2, 2, 65535, 2, 2, 65539, 2, 0, 131075, 2, 0, 196608, 2, 1, 196609, 2, 1, 196610, 2, 1, 262142, 2, 1, 262143, 2, 1, 0, 3, 2, 1, 3, 2, 2, 3, 2, 3, 3, 2, 65533, 3, 0, 65534, 3, 2, 65535, 3, 2, 65539, 3, 0, 131075, 3, 0, 65533, 65533, 2, 65534, 65533, 2, 0, 65534, 2, 1, 65534, 2, 2, 65534, 2, 3, 65534, 2, 65533, 65534, 2, 65534, 65534, 2, 65535, 65534, 2, 65536, 65534, 0, 65537, 65534, 0, 65538, 65534, 0, 131070, 65534, 0, 131071, 65534, 0, 131072, 65534, 0, 131073, 65534, 0, 131074, 65534, 0, 196606, 65534, 0, 196607, 65534, 0, 196608, 65534, 0, 196609, 65534, 0, 196610, 65534, 0, 262142, 65534, 0, 262143, 65534, 0, 0, 65535, 2, 1, 65535, 2, 2, 65535, 2, 3, 65535, 2, 65533, 65535, 2, 65534, 65535, 2, 65535, 65535, 2, 65539, 65535, 0, 131075, 65535, 0, 196608, 65535, 1, 196609, 65535, 1, 196610, 65535, 1610612737, 196611, 65535, 0, 262142, 65535, 1, 262143, 65535, 1 )
+"cells": PoolIntArray( 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 65539, 0, 0, 131075, 0, 0, 196608, 0, 1, 196609, 0, 1, 196610, 0, 1, 196611, 0, 0, 262142, 0, 1, 262143, 0, 1, 0, 1, 2, 1, 1, 2, 2, 1, 2, 3, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 2, 65539, 1, 0, 131075, 1, 0, 196608, 1, 1, 196609, 1, 1, 196610, 1, 1, 196611, 1, 0, 262141, 1, 1, 262142, 1, 1, 262143, 1, 1, 0, 2, 2, 1, 2, 2, 2, 2, 2, 3, 2, 2, 65533, 2, 2, 65534, 2, 2, 65535, 2, 2, 65539, 2, 0, 131075, 2, 0, 196608, 2, 1, 196609, 2, 1, 196610, 2, 1, 262142, 2, 1, 262143, 2, 1, 0, 3, 2, 1, 3, 2, 2, 3, 2, 3, 3, 2, 65533, 3, 0, 65534, 3, 2, 65535, 3, 2, 65539, 3, 0, 131075, 3, 0, 65533, 65533, 2, 65534, 65533, 2, 0, 65534, 2, 1, 65534, 2, 2, 65534, 2, 3, 65534, 2, 65533, 65534, 2, 65534, 65534, 2, 65535, 65534, 2, 65536, 65534, 0, 65537, 65534, 0, 65538, 65534, 0, 131070, 65534, 0, 131071, 65534, 0, 131072, 65534, 0, 131073, 65534, 0, 131074, 65534, 0, 196606, 65534, 0, 196607, 65534, 0, 196608, 65534, 0, 196609, 65534, 0, 196610, 65534, 0, 262142, 65534, 1610612736, 262143, 65534, 0, 0, 65535, 2, 1, 65535, 2, 2, 65535, 2, 3, 65535, 2, 65533, 65535, 2, 65534, 65535, 2, 65535, 65535, 2, 65539, 65535, 0, 131075, 65535, 0, 196608, 65535, 1, 196609, 65535, 1, 196610, 65535, 1, 196611, 65535, 0, 262142, 65535, 1, 262143, 65535, 1 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -234,7 +235,7 @@ transform = Transform( 0.87171, 0, -0.490022, 0, 1, 0, 0.490022, 0, 0.87171, 0.4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial/Camera"]
 autoplay = "Sway"
 playback_process_mode = 0
-anims/Sway = SubResource( 12 )
+anims/Sway = SubResource( 11 )
 
 [node name="Sprite3D" type="Sprite3D" parent="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 1.06581e-014, 0, -1.06581e-014, 1, 0.786467, 2.03247, -0.979168 )
@@ -259,7 +260,7 @@ mesh = ExtResource( 11 )
 
 [node name="Sprite3D2" type="Sprite3D" parent="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.511, 2.32969, -0.0897612 )
-material_override = SubResource( 6 )
+material_override = SubResource( 12 )
 pixel_size = 0.02
 double_sided = false
 texture = ExtResource( 12 )
