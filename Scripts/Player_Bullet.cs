@@ -62,25 +62,28 @@ public class Player_Bullet : KinematicBody
 		{
 			Node b = humanHitParticle.Instance();
 			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
-			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position);
+			//((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - ((KinematicBody)collision.Collider).GetGlobalTransform().origin);
 
 			try 
 			{
 				((Enemy)collision.Collider).Hit();
-				((Enemy)collision.Collider).AddChild(b);
+				((Node)collision.Collider).AddChild(b);
 				RemoveBullet();
 			}
 			catch
 			{
 				((Player)collision.Collider).Hit();
-				//((Player)collision.Collider).AddChild(b);
+				((Node)collision.Collider).AddChild(b);
+				RemoveBullet();
+			}
+			finally
+			{
 				RemoveBullet();
 			}
 		}
 
 		else
 		{
-			GD.Print("HIT");
 			Node b = hitParticle.Instance();
 			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
 			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position);

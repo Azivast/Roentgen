@@ -52,8 +52,8 @@ public class Enemy : KinematicBody
         if (playerInFOV == false || dead || player == null) 
             return;
 
-        // Disable muzzle flash incase it's lite
-        ((OmniLight)muzzleFlashLight).Visible = false;
+        // Disable muzzle flash incase it's lit
+        //((OmniLight)muzzleFlashLight).Visible = false;
 
         // Point raycast to behind player.
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - rayCast.GlobalTransform.origin;
@@ -146,7 +146,7 @@ public class Enemy : KinematicBody
         bulletContainer.AddChild(b);
 
         // Light muzzle flash
-        ((OmniLight)muzzleFlashLight).Visible = true;
+        //((OmniLight)muzzleFlashLight).Visible = true;
     }
 
     private void OnSeeableAreaEntered(Node body)

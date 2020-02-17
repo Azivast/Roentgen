@@ -82,7 +82,7 @@ script = ExtResource( 5 )
 [node name="Firing Particles" type="Particles" parent="Head/Gun"]
 
 [node name="Firing Position" type="Position3D" parent="Head/Gun"]
-transform = Transform( 13.6507, 0, 0, 0, 13.6507, 0, 0, 0, 13.6507, 0.0251224, -0.0321738, -8.50677 )
+transform = Transform( 13.6507, 0, 0, 0, 13.6507, 0, 0, 0, 13.6507, 0.0251222, 0.562638, -8.50677 )
 
 [node name="FiringTimer" type="Timer" parent="Head/Gun"]
 wait_time = 0.2
