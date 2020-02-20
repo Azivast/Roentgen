@@ -12,6 +12,7 @@ height = 0.504483
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 flags_albedo_tex_force_srgb = true
+params_depth_draw_mode = 3
 params_billboard_mode = 2
 
 [sub_resource type="Animation" id=3]
@@ -48,6 +49,7 @@ shape = SubResource( 1 )
 transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.0304127, 0 )
 material_override = SubResource( 2 )
 pixel_size = 0.027
+shaded = true
 double_sided = false
 texture = ExtResource( 2 )
 vframes = 2
