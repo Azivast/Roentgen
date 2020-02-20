@@ -106,6 +106,9 @@ public class Enemy : KinematicBody
         // Get direction to player
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - Translation;
         Vector3 VectorToPlayerNormalized = VectorToPlayer.Normalized();
+
+        // Check if enemy is too close to player and if so stop
+        if (VectorToPlayer.Length() <= 2) return;
         
         // Adjust velocity to move in players direction
         velocity.x += VectorToPlayerNormalized.x * movementSpeed;
