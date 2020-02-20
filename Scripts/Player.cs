@@ -163,13 +163,13 @@ public class Player : KinematicBody
 		aim = head.GetGlobalTransform().basis;
 		
 		// Get input
-		if (Input.IsActionPressed("move_forward"))
+		if (Input.IsActionPressed("Forward"))
 			direction.z -= 1;
-		if (Input.IsActionPressed("move_backwards"))
+		if (Input.IsActionPressed("Backward"))
 			direction.z += 1;
-		if (Input.IsActionPressed("move_left"))
+		if (Input.IsActionPressed("Left"))
 			direction.x -= 1;
-		if (Input.IsActionPressed("move_right"))
+		if (Input.IsActionPressed("Right"))
 			direction.x += 1; 
 
 		// Rotate direction
@@ -194,7 +194,7 @@ public class Player : KinematicBody
 		}
 
 		// Jump
-		if (Input.IsActionPressed("move_jump") && onGround)
+		if (Input.IsActionPressed("Jump") && onGround)
 		{
 			velocity.y += jumpHeight; 
 			onGround = false;
@@ -207,7 +207,7 @@ public class Player : KinematicBody
 		float speed = maxWalkSpeed;
 
 		// Check if also running
-		if (Input.IsActionPressed("move_sprint"))
+		if (Input.IsActionPressed("Run"))
 			speed = 6;
 
 		// Position player would move to at max speed
@@ -239,13 +239,13 @@ public class Player : KinematicBody
 		var aim = head.GetGlobalTransform().basis;
 		
 		// Get input
-		if (Input.IsActionPressed("move_forward"))
+		if (Input.IsActionPressed("Forward"))
 			direction -= aim.z;
-		if (Input.IsActionPressed("move_backwards"))
+		if (Input.IsActionPressed("Backward"))
 			direction += aim.z;
-		if (Input.IsActionPressed("move_left"))
+		if (Input.IsActionPressed("Left"))
 			direction -= aim.x;
-		if (Input.IsActionPressed("move_right"))
+		if (Input.IsActionPressed("Right"))
 			direction += aim.x; 
 
 		direction.Normalized();
@@ -299,14 +299,14 @@ public class Player : KinematicBody
         else 
 			walk(delta);
 			
-		if (Input.IsActionPressed("shoot") && ammo > 0)
+		if (Input.IsActionPressed("Shoot") && ammo > 0)
 		{
 			if (firingTimer.IsStopped())
 				shoot();
 		}
 
 		// Chek if player tries to interact using E
-		if (Input.IsActionJustPressed("interact")) 
+		if (Input.IsActionJustPressed("Interact")) 
 			_Interact();
 		
 		// Check if game should exit

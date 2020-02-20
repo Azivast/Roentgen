@@ -1,0 +1,246 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Options.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Button.cs" type="Script" id=3]
+[ext_resource path="res://Mesh Libraries/gridmap.meshlib" type="MeshLibrary" id=4]
+[ext_resource path="res://Textures/graffiti1.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="Theme" id=6]
+default_font = ExtResource( 1 )
+"Button/colors/Button Color" = Color( 1, 1, 1, 1 )
+Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.709804, 0.866667, 0.490196, 1 )
+Button/colors/font_color_pressed = Color( 0.235294, 0.266667, 0.192157, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = SubResource( 5 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.05261
+margin_bottom = -1.05261
+theme = SubResource( 6 )
+script = ExtResource( 2 )
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -164.397
+margin_top = 906.166
+margin_right = 186.603
+margin_bottom = 987.166
+custom_fonts/font = ExtResource( 1 )
+action_mode = 0
+text = "BACK"
+script = ExtResource( 3 )
+sceneToLoad = "Main menu"
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="GridMap" type="GridMap" parent="Spatial"]
+mesh_library = ExtResource( 4 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65533, 0, -1610612736, 65534, 0, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, -1610612736, 65533, 1, 0, 65534, 1, 0, 65535, 1, -1610612736, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 536870912, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 3, -536870912, 1, 3, 0, 2, 3, 0, 3, 3, 0, 65533, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 65534, 0, 1, 65534, 0, 2, 65534, 0, 3, 65534, 0, 65533, 65534, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="Camera" type="Camera" parent="Spatial"]
+transform = Transform( 0.942139, 0.307863, -0.132642, 0.0542951, 0.250318, 0.96664, 0.330795, -0.917911, 0.219119, -0.413962, 2.57007, 1.74341 )
+
+[node name="Sprite3D" type="Sprite3D" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, -1.21416, 1.00905, 1.1306 )
+pixel_size = 0.03
+texture = ExtResource( 5 )
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 540.84
+margin_top = 158.101
+margin_right = 1410.84
+margin_bottom = 837.101
+size_flags_stretch_ratio = 0.0
+tab_align = 0
+
+[node name="Input" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 54.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Input"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -40.0
+margin_bottom = -24.0
+size_flags_stretch_ratio = 0.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Input/ScrollContainer"]
+margin_right = 239.0
+margin_bottom = 276.0
+
+[node name="HBoxContainer_Forward" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_right = 239.0
+margin_bottom = 36.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Forward"]
+margin_right = 211.0
+margin_bottom = 36.0
+text = "Forward: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Forward"]
+margin_left = 215.0
+margin_right = 215.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="HBoxContainer_Left" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 239.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Left"]
+margin_right = 133.0
+margin_bottom = 36.0
+text = "Left: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Left"]
+margin_left = 137.0
+margin_right = 137.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="HBoxContainer_Right" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_top = 80.0
+margin_right = 239.0
+margin_bottom = 116.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Right"]
+margin_right = 146.0
+margin_bottom = 36.0
+text = "Right: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Right"]
+margin_left = 150.0
+margin_right = 150.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="HBoxContainer_Backward" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 239.0
+margin_bottom = 156.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Backward"]
+margin_right = 235.0
+margin_bottom = 36.0
+text = "Backward: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Backward"]
+margin_left = 239.0
+margin_right = 239.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="HBoxContainer_Jump" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_top = 160.0
+margin_right = 239.0
+margin_bottom = 196.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Jump"]
+margin_right = 139.0
+margin_bottom = 36.0
+text = "Jump: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Jump"]
+margin_left = 143.0
+margin_right = 143.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="HBoxContainer_Run" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_top = 200.0
+margin_right = 239.0
+margin_bottom = 236.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Run"]
+margin_right = 109.0
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( 2635.16, -521.048 )
+text = "Run: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Run"]
+margin_left = 113.0
+margin_right = 113.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="HBoxContainer_Interact" type="HBoxContainer" parent="TabContainer/Input/ScrollContainer/VBoxContainer"]
+margin_top = 240.0
+margin_right = 239.0
+margin_bottom = 276.0
+
+[node name="Label" type="Label" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Interact"]
+margin_right = 229.0
+margin_bottom = 36.0
+text = "Interact: "
+
+[node name="Button" type="Button" parent="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Interact"]
+margin_left = 233.0
+margin_right = 233.0
+margin_bottom = 36.0
+toggle_mode = true
+shortcut_in_tooltip = false
+
+[node name="Audio" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Video" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+drag_to_rearrange_enabled = true
+[connection signal="pressed" from="Back" to="Back" method="OnButtonPressed"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Forward/Button" to="." method="b_change_key_Forward"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Left/Button" to="." method="b_change_key_Left"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Right/Button" to="." method="b_change_key_Right"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Backward/Button" to="." method="b_change_key_Backward"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Jump/Button" to="." method="b_change_key_Jump"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Run/Button" to="." method="b_change_key_Run"]
+[connection signal="pressed" from="TabContainer/Input/ScrollContainer/VBoxContainer/HBoxContainer_Interact/Button" to="." method="b_change_key_Interact"]

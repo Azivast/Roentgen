@@ -139,7 +139,7 @@ public class Enemy : KinematicBody
         // Set speed
         ((Player_Bullet)b).Speed = 0.1f;
         // Set current position and the direction it should travel
-        ((Player_Bullet)b).SetPosAndHeading(GetGlobalTransform().origin, heading);
+        ((Player_Bullet)b).SetPosAndHeading(GetGlobalTransform().origin + heading, heading);
         // Set parent
         ((Player_Bullet)b).Parent = this;
         // Add it to the bullet container
