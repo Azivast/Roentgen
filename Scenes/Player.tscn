@@ -115,6 +115,15 @@ material/0 = null
 material/1 = null
 script = ExtResource( 5 )
 
+[node name="FlashLight" type="SpotLight" parent="Head/Gun"]
+transform = Transform( 9.75178, 0, -0.150365, 0, 9.75296, 0, 0.150365, 0, 9.75178, 0.0341175, 0.0457281, -9.79216 )
+light_energy = 4.0
+light_indirect_energy = 2.0
+light_bake_mode = 0
+shadow_enabled = true
+spot_range = 5.22809
+spot_angle = 24.7958
+
 [node name="Firing Particles" type="Particles" parent="Head/Gun"]
 
 [node name="Firing Position" type="Position3D" parent="Head/Gun"]

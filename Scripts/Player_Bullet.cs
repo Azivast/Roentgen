@@ -60,35 +60,32 @@ public class Player_Bullet : KinematicBody
 
 		if (collision.Collider.HasMethod("Hit"))
 		{
-			Node b = humanHitParticle.Instance();
+			Node b = new Node();
+
+			GD.Print("A");
+			// Set hit particle based on living or inanimate object
+			if (collision.Collider is Player || collision.Collider is Enemy)
+				b = humanHitParticle.Instance();
+			else
+				b = hitParticle.Instance();
+			GD.Print("b");
+			// Set particle variables
 			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
-			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - ((KinematicBody)collision.Collider).GetGlobalTransform().origin);
 
-			try 
+			Vector3 offset = Vector3.Zero;
+			if (collision.Collider.Get("Translation") == null) {}
+			else offset = (Vector3)collision.Collider.Get("Translation");
+			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - offset);
+			
+			if (collision.Collider is RigidBody)
 			{
-				((Enemy)collision.Collider).Hit();
-				((Node)collision.Collider).AddChild(b);
-				RemoveBullet();
+				// Apply impulse to rigidbodies
+				((RigidBody)collision.Collider).ApplyCentralImpulse(-collision.Normal * 5f);
 			}
-			catch
-			{
-				((Player)collision.Collider).Hit();
-				((Node)collision.Collider).AddChild(b);
-				RemoveBullet();
-			}
-			finally
-			{
-				RemoveBullet();
-			}
-		}
 
-		else if (collision.Collider is RigidBody)
-		{
-			// Apply impulse to rigidbodies
-			((RigidBody)collision.Collider).ApplyCentralImpulse(-collision.Normal * 5f);
 
-			Node b = hitParticle.Instance();
-			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
+			collision.Collider.Call("Hit");
+			// Add particle
 			((Node)collision.Collider).AddChild(b);
 			RemoveBullet();
 		}
@@ -97,11 +94,13 @@ public class Player_Bullet : KinematicBody
 		{
 			Node b = hitParticle.Instance();
 			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
-			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position);
+
+			Vector3 offset = Vector3.Zero;
+			if (collision.Collider.Get("Translation") == null) {}
+			else offset = (Vector3)collision.Collider.Get("Translation");
+			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - offset);
 			((Node)collision.Collider).AddChild(b);
 			RemoveBullet();
-
-
 		}
 	}
 
