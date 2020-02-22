@@ -43,6 +43,7 @@ shape = SubResource( 3 )
 [node name="Box" type="Sprite3D" parent="CollisionShape"]
 transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, 0.0489794, 0 )
 material_override = SubResource( 1 )
+lod_max_distance = 10.0
 pixel_size = 0.025
 shaded = true
 texture = ExtResource( 4 )

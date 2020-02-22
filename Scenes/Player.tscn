@@ -117,6 +117,7 @@ script = ExtResource( 5 )
 
 [node name="FlashLight" type="SpotLight" parent="Head/Gun"]
 transform = Transform( 9.75178, 0, -0.150365, 0, 9.75296, 0, 0.150365, 0, 9.75178, 0.0341175, 0.0457281, -9.79216 )
+visible = false
 light_energy = 4.0
 light_indirect_energy = 2.0
 light_bake_mode = 0
