@@ -13,6 +13,19 @@ public class Box : RigidBody
         hitCount++;
 
         if (hitCount >= maxHitCount)
-            QueueFree();
+        {
+            ((AudioStreamPlayer)GetNode("Break")).Play();
+            GetNode("CollisionShape").QueueFree();
+            ((Timer)GetNode("Removal timer")).Start();
+        }
+        else
+            ((AudioStreamPlayer)GetNode("Hit")).Play();
+            
+    }
+
+    // Triggered when removal timer finishes
+    private void Remove()
+    {
+        QueueFree();
     }
 }

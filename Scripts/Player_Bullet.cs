@@ -62,13 +62,11 @@ public class Player_Bullet : KinematicBody
 		{
 			Node b = new Node();
 
-			GD.Print("A");
 			// Set hit particle based on living or inanimate object
 			if (collision.Collider is Player || collision.Collider is Enemy)
 				b = humanHitParticle.Instance();
 			else
 				b = hitParticle.Instance();
-			GD.Print("b");
 			// Set particle variables
 			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
 
@@ -76,17 +74,16 @@ public class Player_Bullet : KinematicBody
 			if (collision.Collider.Get("Translation") == null) {}
 			else offset = (Vector3)collision.Collider.Get("Translation");
 			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - offset);
-			
+
 			if (collision.Collider is RigidBody)
 			{
 				// Apply impulse to rigidbodies
 				((RigidBody)collision.Collider).ApplyCentralImpulse(-collision.Normal * 5f);
 			}
 
-
-			collision.Collider.Call("Hit");
 			// Add particle
 			((Node)collision.Collider).AddChild(b);
+			collision.Collider.Call("Hit");
 			RemoveBullet();
 		}
 
