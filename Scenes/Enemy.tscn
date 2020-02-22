@@ -1,21 +1,29 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
-[ext_resource path="res://Textures/enemy2.png" type="Texture" id=2]
-[ext_resource path="res://Sounds/death.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/death.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=4]
+[ext_resource path="res://Textures/enemy.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/Wasp dying.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/Wasp fire.wav" type="AudioStream" id=7]
+[ext_resource path="res://Textures/enemy2.png" type="Texture" id=8]
+[ext_resource path="res://Sounds/Wasp wings.wav" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 0.504483
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="CylinderShape" id=2]
+radius = 14.7417
+
+[sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
 flags_albedo_tex_force_srgb = true
 params_depth_draw_mode = 3
 params_billboard_mode = 2
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 resource_name = "walk"
 length = 0.8
 loop = true
@@ -33,8 +41,23 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="CylinderShape" id=4]
-radius = 14.7417
+[sub_resource type="Animation" id=5]
+resource_name = "walk"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:colum")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
 [node name="Enemy" type="KinematicBody" groups=[
 "Enemies",
@@ -44,19 +67,6 @@ script = ExtResource( 1 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 1 )
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.0304127, 0 )
-material_override = SubResource( 2 )
-pixel_size = 0.027
-shaded = true
-double_sided = false
-texture = ExtResource( 2 )
-vframes = 2
-hframes = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
-anims/walk = SubResource( 3 )
 
 [node name="FiringTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -68,25 +78,12 @@ one_shot = true
 transform = Transform( 0.54951, 0, 0, 0, 1.98152, 0, 0, 0, 0.54951, 0, 0, 0 )
 
 [node name="Shape" type="CollisionShape" parent="LineOfSight"]
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="RayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, 0 )
-
-[node name="Death audio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 3 )
-unit_db = 8.0
-unit_size = 5.0
-max_distance = 50.0
-
-[node name="Firing audio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 4 )
-unit_db = 8.0
-unit_size = 7.0
-max_db = 6.0
-max_distance = 200.0
 
 [node name="Firing light" type="OmniLight" parent="."]
 visible = false
@@ -96,5 +93,74 @@ light_indirect_energy = 2.56
 light_bake_mode = 0
 omni_range = 2.36258
 omni_shadow_mode = 0
+
+[node name="Human Nodes" type="Spatial" parent="."]
+
+[node name="Death audio" type="AudioStreamPlayer3D" parent="Human Nodes"]
+stream = ExtResource( 2 )
+unit_db = 8.0
+unit_size = 5.0
+max_distance = 50.0
+
+[node name="Hit audio" type="AudioStreamPlayer3D" parent="Human Nodes"]
+stream = ExtResource( 3 )
+unit_db = 8.0
+unit_size = 5.0
+max_distance = 50.0
+
+[node name="Firing audio" type="AudioStreamPlayer3D" parent="Human Nodes"]
+stream = ExtResource( 4 )
+unit_db = 8.0
+unit_size = 7.0
+max_db = 6.0
+max_distance = 200.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Human Nodes"]
+transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.0304127, 0 )
+material_override = SubResource( 3 )
+pixel_size = 0.027
+shaded = true
+double_sided = false
+texture = ExtResource( 5 )
+vframes = 2
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Human Nodes/Sprite3D"]
+anims/walk = SubResource( 4 )
+
+[node name="Wasp Nodes" type="Spatial" parent="."]
+visible = false
+
+[node name="Death audio" type="AudioStreamPlayer3D" parent="Wasp Nodes"]
+stream = ExtResource( 6 )
+unit_db = 8.0
+unit_size = 5.0
+max_distance = 50.0
+
+[node name="Hit audio" type="AudioStreamPlayer3D" parent="Wasp Nodes"]
+stream = ExtResource( 7 )
+unit_db = 8.0
+unit_size = 7.0
+max_db = 6.0
+max_distance = 200.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Wasp Nodes"]
+transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.0304127, 0 )
+material_override = SubResource( 3 )
+pixel_size = 0.027
+shaded = true
+double_sided = false
+texture = ExtResource( 8 )
+vframes = 2
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wasp Nodes/Sprite3D"]
+anims/walk = SubResource( 5 )
+
+[node name="Firing audio" type="AudioStreamPlayer3D" parent="Wasp Nodes"]
+stream = ExtResource( 9 )
+unit_db = 8.0
+unit_size = 5.0
+max_distance = 50.0
 [connection signal="body_entered" from="LineOfSight" to="." method="OnSeeableAreaEntered"]
 [connection signal="body_exited" from="LineOfSight" to="." method="OnSeeableAreaExit"]

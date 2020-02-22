@@ -30,6 +30,7 @@ public class Player : KinematicBody
 	// HUD variables
 	private Label HealthLabel;
 	private Label AmmoLabel;
+	private Label interactLabel;
 
 	// Mouse variables
 	[Export] public static float mouseSensitivity = 0.003f;
@@ -91,6 +92,7 @@ public class Player : KinematicBody
 			hitSound = (AudioStreamPlayer)GetNode("Hit audio");
 			addAmmoSound = (AudioStreamPlayer)GetNode("Ammo audio");
 			addHealthSound = (AudioStreamPlayer)GetNode("Health audio");
+			interactLabel = (Label)GetNode("HUD/Interact Help");
 			
 			// Set life to max life
 			Health = MaxHealth;
@@ -108,37 +110,24 @@ public class Player : KinematicBody
 			}
 	}	
 
-	private void _Interact()
+	private void Interact()
 	{
 		var collider = raycast.GetCollider();
 	
-		try 
-		{
-			// if (collider.HasMethod("Interact")) 
-			// {
-			// 	Console.WriteLine("Door opened.");
-			// 	((WinButton)collider).Interact();
-			// 	((Door)collider).Interact();
-				
-			// }
-			if (collider is Door)
-			{
-				Console.WriteLine("Door opened.");
-				((Door)collider).Interact();	
-			}
-			else if (collider is WinButton)
-			{
-				((WinButton)collider).Interact();
-			}
-		}
+		interactLabel.Visible = false;
 
-		catch
+		if (collider != null)
 		{
-			return;
+			if (collider.HasMethod("Interact")) 
+			{
+				interactLabel.Visible = true;
+				if (Input.IsActionJustPressed("Interact")) 
+					collider.Call("Interact");
+			}
 		}
 	}	
 
-	private void look()
+	private void Look()
 	{
 		if (mouseMovement.Length() != 0)
 		{
@@ -274,7 +263,7 @@ public class Player : KinematicBody
 		MoveAndSlide(velocity * delta);
 	}
 	
-	private void shoot()
+	private void Shoot()
 	{		
 		// Start timer/cooldown
 		firingTimer.Start();
@@ -299,7 +288,8 @@ public class Player : KinematicBody
 
 		public override void _Process(float delta)
     {
-		look();
+		Look();
+		Interact();
 
 		// Update text on HUD
 		HealthLabel.Text = Health.ToString();
@@ -316,12 +306,8 @@ public class Player : KinematicBody
 		if (Input.IsActionPressed("Shoot") && ammo > 0)
 		{
 			if (firingTimer.IsStopped())
-				shoot();
+				Shoot();
 		}
-
-		// Chek if player tries to interact using E
-		if (Input.IsActionJustPressed("Interact")) 
-			_Interact();
 		
 		// Check if game should exit
 		if (Input.IsActionPressed("ui_cancel"))

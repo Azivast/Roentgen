@@ -3,9 +3,12 @@ using System;
 
 public class Enemy : KinematicBody
 {
+    [Export] public bool IsHuman = false;
+
     private int health = 100;
     private bool dead = false;
     private AudioStreamPlayer3D deathAudio;
+    private AudioStreamPlayer3D hitAudio;
     
     [Export] private float movementSpeed = 10f;
     [Export] private float maxMovementSpeed = 100f;
@@ -38,11 +41,28 @@ public class Enemy : KinematicBody
         bulletContainer = GetNode("Bullet Container");
         bullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullet.tscn");
         rayCast = (RayCast)GetNode("RayCast");
-        sprite = (Sprite3D)GetNode("Sprite3D");
-        animationPlayer = (AnimationPlayer)GetNode("Sprite3D/AnimationPlayer");
-        deathAudio = (AudioStreamPlayer3D)GetNode("Death audio");
-        firingAudio = (AudioStreamPlayer3D)GetNode("Firing audio");
         muzzleFlashLight = GetNode("Firing light");
+
+        if(IsHuman)
+        {
+            ((Spatial)GetNode("Human Nodes")).Visible = true;
+            ((Spatial)GetNode("Wasp Nodes")).Visible = false;
+            deathAudio = (AudioStreamPlayer3D)GetNode("Human Nodes/Death audio");
+            firingAudio = (AudioStreamPlayer3D)GetNode("Human Nodes/Firing audio");
+            hitAudio = (AudioStreamPlayer3D)GetNode("Human Nodes/Hit audio");
+            sprite = (Sprite3D)GetNode("Human Nodes/Sprite3D");
+            animationPlayer = (AnimationPlayer)GetNode("Human Nodes/Sprite3D/AnimationPlayer");
+        }
+        else
+        {
+            ((Spatial)GetNode("Wasp Nodes")).Visible = true;
+            ((Spatial)GetNode("Human Nodes")).Visible = false;
+            deathAudio = (AudioStreamPlayer3D)GetNode("Wasp Nodes/Death audio");
+            firingAudio = (AudioStreamPlayer3D)GetNode("Wasp Nodes/Firing audio");
+            hitAudio = (AudioStreamPlayer3D)GetNode("Wasp Nodes/Hit audio");
+            sprite = (Sprite3D)GetNode("Wasp Nodes/Sprite3D");
+            animationPlayer = (AnimationPlayer)GetNode("Wasp Nodes/Sprite3D/AnimationPlayer");
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -180,8 +200,9 @@ public class Enemy : KinematicBody
         {
             Kill();
             deathAudio.Play();
+            return;
         }
-        
+        hitAudio.Play();
     }
     
     public void Kill()

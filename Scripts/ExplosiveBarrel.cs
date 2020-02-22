@@ -7,12 +7,14 @@ public class ExplosiveBarrel : RigidBody
     private AnimationPlayer animation;
     private AudioStreamPlayer3D audio;
     private Sprite3D sprite;
+    private Timer timer;
 
     public override void _Ready()
 	{
 		animation = ((AnimationPlayer)GetNode("AnimationPlayer"));
         audio = ((AudioStreamPlayer3D)GetNode("AudioStreamPlayer3D"));
         sprite = (Sprite3D)GetNode("Barrel");
+        timer = (Timer)GetNode("Timer");
 	}
 
 
@@ -23,6 +25,7 @@ public class ExplosiveBarrel : RigidBody
         animation.Play("Explode");
         audio.Play();
         sprite.QueueFree();
+        timer.Start();
     }
 
     public void OnExplosionAreaBodyEntered(Node body)
