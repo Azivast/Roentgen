@@ -62,6 +62,7 @@
     <Compile Include="Scripts\Door.cs" />
     <Compile Include="Scripts\Enemy.cs" />
     <Compile Include="Scripts\Enemy_Bullet.cs" />
+    <Compile Include="Scripts\ExplosiveBarrel.cs" />
     <Compile Include="Scripts\HealthPack.cs" />
     <Compile Include="Scripts\Options.cs" />
     <Compile Include="Scripts\Player.cs" />

@@ -2,22 +2,20 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/enemy2.png-753262951255fb9f4435a022552be19e.s3tc.stex"
-path.etc2="res://.import/enemy2.png-753262951255fb9f4435a022552be19e.etc2.stex"
+path="res://.import/enemy2.png-753262951255fb9f4435a022552be19e.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Textures/enemy2.png"
-dest_files=[ "res://.import/enemy2.png-753262951255fb9f4435a022552be19e.s3tc.stex", "res://.import/enemy2.png-753262951255fb9f4435a022552be19e.etc2.stex" ]
+dest_files=[ "res://.import/enemy2.png-753262951255fb9f4435a022552be19e.stex" ]
 
 [params]
 
-compress/mode=2
-compress/lossy_quality=0.7
+compress/mode=0
+compress/lossy_quality=1.0
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

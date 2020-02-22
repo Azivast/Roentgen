@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Box.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/Crate break.wav" type="AudioStream" id=2]
@@ -14,9 +14,6 @@ flags_transparent = true
 params_depth_draw_mode = 3
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 2, 1.32, 2 )
 
 [node name="Box" type="RigidBody"]
 continuous_cd = true
@@ -47,11 +44,4 @@ lod_max_distance = 10.0
 pixel_size = 0.025
 shaded = true
 texture = ExtResource( 4 )
-
-[node name="Shadow mesh" type="MeshInstance" parent="CollisionShape/Box"]
-transform = Transform( 0.289678, 0, 0, 0, 0.477031, 0, 0, 0, 0.289678, 0, -0.041, 0 )
-visible = false
-cast_shadow = 3
-mesh = SubResource( 2 )
-material/0 = null
 [connection signal="timeout" from="Removal timer" to="." method="Remove"]

@@ -46,9 +46,7 @@ public class Player : KinematicBody
 	// Walk variables
 	private float gravity = -9.82f / 60;
 	public float maxWalkSpeed = 1.5f;
-	// TODO: This variable doesn't work for some damn reason
-	// Searh for "maxSprintSpeed" further down and set it manually instead
-	private float maxSprintSpeed = 3f;
+	private float maxSprintSpeed = 4f;
 	private float accel = 2f;
 	private float deAccel = 10f;
 
@@ -210,7 +208,7 @@ public class Player : KinematicBody
 
 		// Check if also running
 		if (Input.IsActionPressed("Run"))
-			speed = 6;
+			speed = maxSprintSpeed;
 
 		// Position player would move to at max speed
 		var target = direction * speed;

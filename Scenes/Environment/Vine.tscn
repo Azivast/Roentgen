@@ -4,11 +4,11 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
+params_depth_draw_mode = 3
 params_billboard_mode = 2
 params_billboard_keep_scale = true
 
 [node name="Vine" type="Sprite3D"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 material_override = SubResource( 1 )
 use_in_baked_light = true
 pixel_size = 0.02
