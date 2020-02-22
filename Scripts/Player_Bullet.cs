@@ -24,7 +24,7 @@ public class Player_Bullet : KinematicBody
 	public override void _PhysicsProcess(float delta)
 	{
 		// Move bullet and get collider
-		var collision = MoveAndCollide(heading);
+		var collision = MoveAndCollide(heading, false);
 
 		// Handle collision if bullet is colliding
 		try 
@@ -62,7 +62,7 @@ public class Player_Bullet : KinematicBody
 		{
 			Node b = humanHitParticle.Instance();
 			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
-			//((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - ((KinematicBody)collision.Collider).GetGlobalTransform().origin);
+			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - ((KinematicBody)collision.Collider).GetGlobalTransform().origin);
 
 			try 
 			{
@@ -82,6 +82,17 @@ public class Player_Bullet : KinematicBody
 			}
 		}
 
+		else if (collision.Collider is RigidBody)
+		{
+			// Apply impulse to rigidbodies
+			((RigidBody)collision.Collider).ApplyCentralImpulse(-collision.Normal * 5f);
+
+			Node b = hitParticle.Instance();
+			((CPUParticles)b.GetNode("CPUParticles")).Emitting = true;
+			((Node)collision.Collider).AddChild(b);
+			RemoveBullet();
+		}
+
 		else
 		{
 			Node b = hitParticle.Instance();
@@ -89,6 +100,8 @@ public class Player_Bullet : KinematicBody
 			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position);
 			((Node)collision.Collider).AddChild(b);
 			RemoveBullet();
+
+
 		}
 	}
 

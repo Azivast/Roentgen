@@ -25,6 +25,7 @@ public class Player : KinematicBody
 	// Life variables
 	[Export] public int MaxHealth = 100;
 	public int Health;
+	private AudioStreamPlayer addHealthSound;
 
 	// HUD variables
 	private Label HealthLabel;
@@ -43,7 +44,7 @@ public class Player : KinematicBody
 	private bool flying = false;
 
 	// Walk variables
-	private float gravity = -9.82f * 0.01f;
+	private float gravity = -9.82f / 60;
 	public float maxWalkSpeed = 3f;
 	// This variable doesn't work for some damn reason
 	// Searh for "maxSprintSpeed" further down and set it manually instead
@@ -52,7 +53,7 @@ public class Player : KinematicBody
 	private float deAccel = 10f;
 
 	// Jumping variables
-	private float jumpHeight = 6;
+	private float jumpHeight = 5;
 	private bool onGround = false;
 	private RayCast onGroundRaycast;
 
@@ -91,6 +92,7 @@ public class Player : KinematicBody
 			firingSound = (AudioStreamPlayer)GetNode("Firing audio");
 			hitSound = (AudioStreamPlayer)GetNode("Hit audio");
 			addAmmoSound = (AudioStreamPlayer)GetNode("Ammo audio");
+			addHealthSound = (AudioStreamPlayer)GetNode("Health audio");
 			
 			// Set life to max life
 			Health = MaxHealth;
@@ -228,7 +230,21 @@ public class Player : KinematicBody
 
 		// Move only when movement is not extremely small. Workaround for some godot bug
 		if (velocity.Length() > 0.1f)
-			velocity = MoveAndSlide(velocity, Vector3.Up);
+			// TODO: Velocity is not supposed to be multiplied by delta but it is above. Removing delta messes up velocity though so this needs experimenting.
+			velocity = MoveAndSlide(velocity, Vector3.Up, false, 4, 0.784398f, false);
+
+		// Apply impulse to rigidbodies player is colliding with
+		for (int i = 0; i < GetSlideCount(); i++)
+		{
+        	var collision = GetSlideCollision(i);
+
+			// TODO: Replace this with something more proper than try catch
+			try 
+			{
+			((RigidBody)collision.Collider).ApplyCentralImpulse(-collision.Normal + -collision.Normal * Velocity.Length() );
+			}
+			catch {}
+		}
 	}
 
 	private void fly(float delta)
@@ -335,7 +351,7 @@ public class Player : KinematicBody
 	public void Hit()
 	{
 		// Apply damage to health and keep it within the interval of 0 and max Health.
-		Health = Mathf.Clamp((Health - 10), 0, MaxHealth);
+		Health = Mathf.Clamp((Health - 5), 0, MaxHealth);
 
 		// Play hit sound
 		hitSound.Play();
@@ -356,6 +372,13 @@ public class Player : KinematicBody
 	{
 		ammo += amount;
 		addAmmoSound.Play();
+		// Play animation
+		((AnimationPlayer)GetNode("HUD/AnimationPlayer")).Play("Pick Up");
+	}
+	public void AddHealth(int amount)
+	{
+		Health = Mathf.Clamp(Health += amount, 0, 100);
+		addHealthSound.Play();
 		// Play animation
 		((AnimationPlayer)GetNode("HUD/AnimationPlayer")).Play("Pick Up");
 	}

@@ -214,3 +214,6 @@ stream = ExtResource( 12 )
 
 [node name="Ammo audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+
+[node name="Health audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
