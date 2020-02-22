@@ -43,6 +43,10 @@ public class Enemy : KinematicBody
         rayCast = (RayCast)GetNode("RayCast");
         muzzleFlashLight = GetNode("Firing light");
 
+        // Check if enemies are human
+        IsHuman = ((Global)GetNode("/root/Global")).HumanEnemies;
+
+        // Load accordingly
         if(IsHuman)
         {
             ((Spatial)GetNode("Human Nodes")).Visible = true;
