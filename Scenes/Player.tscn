@@ -10,7 +10,7 @@
 [ext_resource path="res://Textures/hud ammo.png" type="Texture" id=8]
 [ext_resource path="res://Fonts/HUD font.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Textures/hud health.png" type="Texture" id=10]
-[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/fire2.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=13]
 
@@ -218,6 +218,7 @@ anims/Damage = SubResource( 5 )
 
 [node name="Firing audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+volume_db = -5.0
 
 [node name="Hit audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
