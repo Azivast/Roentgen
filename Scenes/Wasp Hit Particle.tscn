@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+albedo_color = Color( 0.952941, 0.811765, 0.443137, 1 )
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[node name="Hit Particle" type="Spatial"]
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource( 2 )
+spread = 180.0
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+angular_velocity = 38637.2

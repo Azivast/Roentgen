@@ -1,25 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Menu background.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Fonts/editundo.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Themes/Menu theme.tres" type="Theme" id=4]
-[ext_resource path="res://Scenes/Button.cs" type="Script" id=5]
+[ext_resource path="res://Fonts/editundo.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Themes/Menu theme.tres" type="Theme" id=3]
+[ext_resource path="res://Scenes/Button.cs" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=4]
 size = 100
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 60
 extra_spacing_char = 4
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Spatial" parent="." instance=ExtResource( 1 )]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -60,7 +57,7 @@ align = 1
 margin_top = 73.0
 margin_right = 1920.0
 margin_bottom = 109.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "Olle Astré"
 align = 1
 
@@ -83,7 +80,7 @@ align = 1
 margin_top = 73.0
 margin_right = 1920.0
 margin_bottom = 109.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "From Public domain"
 align = 1
 
@@ -106,7 +103,7 @@ align = 1
 margin_top = 73.0
 margin_right = 1920.0
 margin_bottom = 109.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 text = "Godot Engine"
 align = 1
 
@@ -114,17 +111,17 @@ align = 1
 margin_top = 772.0
 margin_right = 1920.0
 margin_bottom = 808.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 align = 1
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 margin_top = 848.0
 margin_right = 1920.0
 margin_bottom = 884.0
-theme = ExtResource( 4 )
-custom_fonts/font = ExtResource( 3 )
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 action_mode = 0
 text = "Return to main menu"
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 sceneToLoad = "Main menu"
 [connection signal="pressed" from="VBoxContainer/Back" to="VBoxContainer/Back" method="OnButtonPressed"]

@@ -26,5 +26,6 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 1, 1.1622e-013, -2.66454e-015, 1.45628e-010, 1, -6.36646e-012, 7.10543e-015, 3.63798e-012, 1, -0.000953953, -0.000895739, 0.00104559 )
+use_in_baked_light = true
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )

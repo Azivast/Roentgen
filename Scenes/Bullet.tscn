@@ -10,6 +10,7 @@ radius = 0.20017
 flags_transparent = true
 flags_unshaded = true
 flags_disable_ambient_light = true
+params_depth_draw_mode = 3
 params_billboard_mode = 1
 params_billboard_keep_scale = true
 

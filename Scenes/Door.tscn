@@ -49,6 +49,7 @@ anims/Open = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 1, 1.1622e-013, -8.88178e-016, 8.742e-011, 1, -4.54747e-012, 3.55271e-015, 1.81899e-012, 1, -0.000953953, -0.000895381, 0.00104559 )
+use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
@@ -58,9 +59,11 @@ stream = ExtResource( 3 )
 unit_db = 8.0
 unit_size = 3.0
 max_distance = 25.0
+bus = "Sounds"
 
 [node name="Audio close" type="AudioStreamPlayer3D" parent="StaticBody"]
 stream = ExtResource( 4 )
 unit_db = 8.0
 unit_size = 3.0
 max_distance = 25.0
+bus = "Sounds"

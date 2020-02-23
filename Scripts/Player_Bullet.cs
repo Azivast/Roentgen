@@ -10,6 +10,7 @@ public class Player_Bullet : KinematicBody
 
 	private PackedScene hitParticle;
 	private PackedScene humanHitParticle;
+	private PackedScene waspHitParticle;
 
 	public Node Parent;
 	private CollisionShape parentCollisionShape;
@@ -18,6 +19,7 @@ public class Player_Bullet : KinematicBody
 	{
 		hitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Hit Particle.tscn");
 		humanHitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Human Hit Particle.tscn");
+		waspHitParticle = ResourceLoader.Load<PackedScene>("res://Scenes/Wasp Hit Particle.tscn");
 		parentCollisionShape = (CollisionShape)Parent.GetNode("CollisionShape");
 	}
 
@@ -63,8 +65,13 @@ public class Player_Bullet : KinematicBody
 			Node b = new Node();
 
 			// Set hit particle based on living or inanimate object
-			if (collision.Collider is Player || collision.Collider is Enemy)
+			if (collision.Collider is Player)
 				b = humanHitParticle.Instance();
+			else if (collision.Collider is Enemy)
+			{
+				if (((Global)GetNode("/root/Global")).HumanEnemies) b = humanHitParticle.Instance();
+				else b = waspHitParticle.Instance();
+			}
 			else
 				b = hitParticle.Instance();
 			// Set particle variables

@@ -19,7 +19,7 @@ params_billboard_keep_scale = true
 resource_name = "Explode"
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("./Explosion mesh:mesh:material:albedo_color")
+tracks/0/path = NodePath("Explosion mesh:mesh:material:albedo_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0.835294, 0.513726, 1 ), Color( 1, 0.752941, 0.00784314, 0.588235 ), Color( 1, 0.329412, 0, 0.588235 ), Color( 1, 0.752941, 0.00784314, 0.588235 ), Color( 1, 0.329412, 0, 0.588235 ), Color( 1, 0.752941, 0.00784314, 0.588235 ), Color( 1, 0.329412, 0, 0.588235 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("./Explosion mesh:mesh:material:emission")
+tracks/1/path = NodePath("Explosion mesh:mesh:material:emission")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.752941, 0.00784314, 1 ), Color( 1, 0.329412, 0, 1 ), Color( 1, 0.752941, 0.00784314, 1 ), Color( 1, 0.329412, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("./Explosion mesh:mesh:radius")
+tracks/2/path = NodePath("Explosion mesh:mesh:radius")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -55,7 +55,7 @@ tracks/2/keys = {
 "values": [ 0.001, 3.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("./Explosion mesh:mesh:height")
+tracks/3/path = NodePath("Explosion mesh:mesh:height")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -67,7 +67,7 @@ tracks/3/keys = {
 "values": [ 0.002, 6.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("./Explosion mesh:visible")
+tracks/4/path = NodePath("Explosion mesh:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -159,6 +159,7 @@ unit_db = 9.0
 unit_size = 7.0
 max_db = 6.0
 max_distance = 200.0
+bus = "Sounds"
 attenuation_filter_cutoff_hz = 20000.0
 
 [node name="Explosion Area" type="Area" parent="."]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/A Timelapse.wav-ec825cc0c493b74e7c746b5ac4a5fef7.sample"
+
+[deps]
+
+source_file="res://Sounds/A Timelapse.wav"
+dest_files=[ "res://.import/A Timelapse.wav-ec825cc0c493b74e7c746b5ac4a5fef7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

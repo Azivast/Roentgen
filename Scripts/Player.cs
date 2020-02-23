@@ -99,6 +99,9 @@ public class Player : KinematicBody
 
 			// Set Player variable for all enemies
 			GetTree().CallGroup("Enemies", "SetPlayer", this);
+
+			// Capture mouse
+			Input.SetMouseMode(Input.MouseMode.Captured);
 		}
 	
 	public override void _Input(InputEvent @event)
@@ -319,7 +322,7 @@ public class Player : KinematicBody
 		
 		// Check if game should exit
 		if (Input.IsActionPressed("ui_cancel"))
-			GetTree().Quit();
+			GetTree().ChangeScene("res://Scenes/Main Menu.tscn");
     }
 	
 	private void OnLadderAreaEntered(object body)
