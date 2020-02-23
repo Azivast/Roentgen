@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/death.wav" type="AudioStream" id=2]
@@ -6,9 +6,8 @@
 [ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=4]
 [ext_resource path="res://Textures/enemy.png" type="Texture" id=5]
 [ext_resource path="res://Sounds/Wasp dying.wav" type="AudioStream" id=6]
-[ext_resource path="res://Sounds/Wasp fire.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/Wasp wings.wav" type="AudioStream" id=7]
 [ext_resource path="res://Textures/enemy2.png" type="Texture" id=8]
-[ext_resource path="res://Sounds/Wasp wings.wav" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -159,7 +158,7 @@ hframes = 4
 anims/walk = SubResource( 5 )
 
 [node name="Firing audio" type="AudioStreamPlayer3D" parent="Wasp Nodes"]
-stream = ExtResource( 9 )
+stream = ExtResource( 7 )
 unit_db = 8.0
 unit_size = 5.0
 max_distance = 50.0

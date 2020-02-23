@@ -17,7 +17,7 @@ public class Enemy : KinematicBody
 
     private Node player;
     private bool playerInFOV = false;
-    [Export] private int seeableRange = 100;
+    [Export] private int seeableRange = 8;
     private Area SeeableArea;
     private RayCast rayCast;
 
@@ -152,7 +152,7 @@ public class Enemy : KinematicBody
         velocity = new Vector3(horisontalVelocity.x, velocity.y, horisontalVelocity.y);
 
         // Move
-        //MoveAndSlide(velocity * delta, Vector3.Up);
+        MoveAndSlide(velocity * delta, Vector3.Up);
     }
 
 

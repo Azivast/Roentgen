@@ -131,14 +131,22 @@ public class Player : KinematicBody
 	{
 		if (mouseMovement.Length() != 0)
 		{
-			head.Rotate(Vector3.Up, -mouseMovement.x * mouseSensitivity);
-			head.RotateObjectLocal(Vector3.Left, mouseMovement.y * Player.mouseSensitivity);
+			float xRotation = -mouseMovement.y * mouseSensitivity;
+			float yRotation = -mouseMovement.x * mouseSensitivity;
+			float xRotationFinal = xRotation + head.Rotation.x;
+			float yRotationFinal = yRotation + head.Rotation.y;
 
-			// Clamp rotation so that player can't turn their head upside down
-			// TODO: Fix this so it actually does something
-			var rotation = head.RotationDegrees;
-			rotation.x = Mathf.Clamp(rotation.x, -79, 79);
-			head.RotationDegrees = rotation;
+			if (xRotation > Math.PI/2)
+				xRotationFinal = (float)Math.PI/2;
+			if (xRotation < -Math.PI/2)
+				xRotationFinal = -(float)Math.PI/2;
+
+			if (xRotationFinal > Math.PI/2)
+				xRotationFinal = (float)Math.PI/2;
+			if (xRotationFinal < -Math.PI/2)
+				xRotationFinal = -(float)Math.PI/2;
+
+			head.SetRotation(new Vector3(xRotationFinal, yRotationFinal, 0));	
 
 			mouseMovement = Vector2.Zero;
 		}
