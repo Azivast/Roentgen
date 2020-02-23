@@ -5,11 +5,11 @@
 [ext_resource path="res://Sounds/Crate hit.wav" type="AudioStream" id=3]
 [ext_resource path="res://Textures/box.png" type="Texture" id=4]
 
-[sub_resource type="CylinderShape" id=3]
+[sub_resource type="CylinderShape" id=1]
 radius = 0.320087
 height = 0.6767
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 params_depth_draw_mode = 3
 params_billboard_mode = 2
@@ -35,12 +35,11 @@ one_shot = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Box" type="Sprite3D" parent="CollisionShape"]
 transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, 0.0489794, 0 )
-material_override = SubResource( 1 )
-lod_max_distance = 10.0
+material_override = SubResource( 2 )
 pixel_size = 0.025
 shaded = true
 texture = ExtResource( 4 )

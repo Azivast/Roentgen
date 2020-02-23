@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Textures/graffiti2.png" type="Texture" id=1]
+
+[node name="Graffiti Arrow" type="Sprite3D"]
+use_in_baked_light = true
+pixel_size = 0.03
+shaded = true
+double_sided = false
+texture = ExtResource( 1 )

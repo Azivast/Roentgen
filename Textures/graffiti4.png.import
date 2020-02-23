@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/WinButton.png-d8d2acfe51fe94474009c0ba35074ad4.s3tc.stex"
-path.etc2="res://.import/WinButton.png-d8d2acfe51fe94474009c0ba35074ad4.etc2.stex"
+path.s3tc="res://.import/graffiti4.png-05c4c0e72157cd786103d1813d8e8325.s3tc.stex"
+path.etc2="res://.import/graffiti4.png-05c4c0e72157cd786103d1813d8e8325.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/WinButton.png"
-dest_files=[ "res://.import/WinButton.png-d8d2acfe51fe94474009c0ba35074ad4.s3tc.stex", "res://.import/WinButton.png-d8d2acfe51fe94474009c0ba35074ad4.etc2.stex" ]
+source_file="res://Textures/graffiti4.png"
+dest_files=[ "res://.import/graffiti4.png-05c4c0e72157cd786103d1813d8e8325.s3tc.stex", "res://.import/graffiti4.png-05c4c0e72157cd786103d1813d8e8325.etc2.stex" ]
 
 [params]
 
 compress/mode=2
-compress/lossy_quality=1.0
+compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
@@ -25,7 +25,7 @@ flags/repeat=true
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=0
 process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false

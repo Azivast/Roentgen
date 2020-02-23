@@ -10,8 +10,8 @@ public class Enemy : RigidBody
     private AudioStreamPlayer3D deathAudio;
     private AudioStreamPlayer3D hitAudio;
     
-    private float movementSpeed = 30f;
-    private float maxMovementSpeed = 500f;
+    [Export] private float movementSpeed = 30f;
+    [Export] private float maxMovementSpeed = 500f;
     Vector3 velocity = Vector3.Zero;
 
     private Node player;
