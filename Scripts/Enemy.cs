@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Enemy : KinematicBody
+public class Enemy : RigidBody
 {
     [Export] public bool IsHuman = false;
 
@@ -10,9 +10,8 @@ public class Enemy : KinematicBody
     private AudioStreamPlayer3D deathAudio;
     private AudioStreamPlayer3D hitAudio;
     
-    private float movementSpeed = 10f;
-    private float maxMovementSpeed = 100f;
-    private float gravity = -9.82f * 0.03f;
+    private float movementSpeed = 30f;
+    private float maxMovementSpeed = 500f;
     Vector3 velocity = Vector3.Zero;
 
     private Node player;
@@ -85,25 +84,24 @@ public class Enemy : KinematicBody
 
         // Point raycast to behind player.
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - rayCast.GlobalTransform.origin;
-        // Don't do anything else if player is too far away
-        // VectorToPlayer *= 1.5f;
-        // rayCast.CastTo = VectorToPlayer;
+        VectorToPlayer *= 1.5f;
+        rayCast.CastTo = VectorToPlayer;
 
-        // // Check if enemy has clear line of sight to player and if so shoot
-        // if (rayCast.IsColliding())
-        // {
-        //     var collider = rayCast.GetCollider();
+        // Check if enemy has clear line of sight to player and if so shoot
+        if (rayCast.IsColliding())
+        {
+            var collider = rayCast.GetCollider();
 
-        //     if (collider == player) 
-        //     {
-        //         // Shoot
-        //         if (firingTimer.IsStopped())
-        //         {
-        //             shoot(VectorToPlayer);
-        //             firingAudio.Play();
-        //         }
-        //     }
-        // }
+            if (collider == player) 
+            {
+                // Shoot
+                if (firingTimer.IsStopped())
+                {
+                    shoot(VectorToPlayer);
+                    firingAudio.Play();
+                }
+            }
+        }
 
         // Animate from first row
         sprite.Frame = colum;
@@ -111,12 +109,6 @@ public class Enemy : KinematicBody
 
     public override void  _PhysicsProcess(float delta)
     {
-        //Apply gravity if in the air
-        if (!IsOnFloor())
-        {
-            velocity.y += gravity;
-            MoveAndSlide (velocity * delta, Vector3.Up);
-        }
 
 
             
@@ -152,7 +144,7 @@ public class Enemy : KinematicBody
         velocity = new Vector3(horisontalVelocity.x, velocity.y, horisontalVelocity.y);
 
         // Move
-        MoveAndSlide(velocity * delta, Vector3.Up);
+        ApplyCentralImpulse(velocity * delta);
     }
 
 
@@ -239,8 +231,9 @@ public class Enemy : KinematicBody
     public void Kill()
     {
         dead = true;
-        // Disable collision
-        ((CollisionShape)GetNode("CollisionShape")).Disabled = true;
+        // Disable collision for player
+        SetCollisionLayerBit(0, false);
+        SetCollisionMaskBit(0, false);
         // Change to dead sprite
         sprite.Frame = 4;
     }
