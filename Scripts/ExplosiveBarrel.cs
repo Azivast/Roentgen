@@ -8,6 +8,9 @@ public class ExplosiveBarrel : RigidBody
     private AudioStreamPlayer3D audio;
     private Sprite3D sprite;
     private Timer timer;
+    private Area area;
+    private CollisionShape collisionShape;
+    private MeshInstance explosionMesh;
 
     public override void _Ready()
 	{
@@ -15,6 +18,9 @@ public class ExplosiveBarrel : RigidBody
         audio = ((AudioStreamPlayer3D)GetNode("AudioStreamPlayer3D"));
         sprite = (Sprite3D)GetNode("Barrel");
         timer = (Timer)GetNode("Timer");
+        area = (Area)GetNode("Explosion Area");
+        collisionShape = (CollisionShape)GetNode("CollisionShape");
+        explosionMesh = (MeshInstance)GetNode("Explosion mesh");
 	}
 
 
@@ -35,8 +41,14 @@ public class ExplosiveBarrel : RigidBody
         if (body.HasMethod("Kill"))
             body.Call("Kill");   
     }
-    // Triggered when timer finishes
-    private void Remove()
+
+    private void RemoveExploded()
+    {
+        area.QueueFree();
+        collisionShape.QueueFree();
+        explosionMesh.QueueFree();
+    }
+    private void RemoveAll()
     {
         QueueFree();
     }

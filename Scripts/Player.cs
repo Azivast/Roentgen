@@ -46,7 +46,7 @@ public class Player : KinematicBody
 
 	// Walk variables
 	private float gravity = -9.82f / 60;
-	public float maxWalkSpeed = 1.5f;
+	public float maxWalkSpeed = 4f;
 	private float maxSprintSpeed = 4f;
 	private float accel = 2f;
 	private float deAccel = 10f;

@@ -233,7 +233,7 @@ align = 1
 
 [node name="Firing audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = -5.0
+volume_db = -6.0
 
 [node name="Hit audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
