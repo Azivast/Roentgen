@@ -76,6 +76,7 @@ one_shot = true
 
 [node name="LineOfSight" type="Area" parent="."]
 transform = Transform( 0.54951, 0, 0, 0, 1.98152, 0, 0, 0, 0.54951, 0, 0, 0 )
+visible = false
 
 [node name="Shape" type="CollisionShape" parent="LineOfSight"]
 shape = SubResource( 2 )
@@ -162,5 +163,3 @@ stream = ExtResource( 9 )
 unit_db = 8.0
 unit_size = 5.0
 max_distance = 50.0
-[connection signal="body_entered" from="LineOfSight" to="." method="OnSeeableAreaEntered"]
-[connection signal="body_exited" from="LineOfSight" to="." method="OnSeeableAreaExit"]

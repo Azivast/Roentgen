@@ -10,13 +10,14 @@ public class Enemy : KinematicBody
     private AudioStreamPlayer3D deathAudio;
     private AudioStreamPlayer3D hitAudio;
     
-    [Export] private float movementSpeed = 10f;
-    [Export] private float maxMovementSpeed = 100f;
+    private float movementSpeed = 10f;
+    private float maxMovementSpeed = 100f;
     private float gravity = -9.82f * 0.03f;
     Vector3 velocity = Vector3.Zero;
 
     private Node player;
     private bool playerInFOV = false;
+    [Export] private int seeableRange = 100;
     private Area SeeableArea;
     private RayCast rayCast;
 
@@ -72,6 +73,9 @@ public class Enemy : KinematicBody
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        // Track player
+        TrackPlayer();
+
         // Dont process unless enemy is alive and player is present
         if (playerInFOV == false || dead || player == null) 
             return;
@@ -82,24 +86,24 @@ public class Enemy : KinematicBody
         // Point raycast to behind player.
         Vector3 VectorToPlayer = ((KinematicBody)player).Translation - rayCast.GlobalTransform.origin;
         // Don't do anything else if player is too far away
-        VectorToPlayer *= 1.5f;
-        rayCast.CastTo = VectorToPlayer;
+        // VectorToPlayer *= 1.5f;
+        // rayCast.CastTo = VectorToPlayer;
 
-        // Check if enemy has clear line of sight to player and if so shoot
-        if (rayCast.IsColliding())
-        {
-            var collider = rayCast.GetCollider();
+        // // Check if enemy has clear line of sight to player and if so shoot
+        // if (rayCast.IsColliding())
+        // {
+        //     var collider = rayCast.GetCollider();
 
-            if (collider == player) 
-            {
-                // Shoot
-                if (firingTimer.IsStopped())
-                {
-                    shoot(VectorToPlayer);
-                    firingAudio.Play();
-                }
-            }
-        }
+        //     if (collider == player) 
+        //     {
+        //         // Shoot
+        //         if (firingTimer.IsStopped())
+        //         {
+        //             shoot(VectorToPlayer);
+        //             firingAudio.Play();
+        //         }
+        //     }
+        // }
 
         // Animate from first row
         sprite.Frame = colum;
@@ -148,7 +152,7 @@ public class Enemy : KinematicBody
         velocity = new Vector3(horisontalVelocity.x, velocity.y, horisontalVelocity.y);
 
         // Move
-        MoveAndSlide(velocity * delta, Vector3.Up);
+        //MoveAndSlide(velocity * delta, Vector3.Up);
     }
 
 
@@ -176,25 +180,48 @@ public class Enemy : KinematicBody
         //((OmniLight)muzzleFlashLight).Visible = true;
     }
 
-    private void OnSeeableAreaEntered(Node body)
+    private void TrackPlayer()
 	{
-		if (body == player)
+        Vector3 vectorToPlayer = new Vector3(GlobalTransform.origin - ((Player)player).GlobalTransform.origin);
+
+		if (vectorToPlayer.Length() <= seeableRange)
         {
             playerInFOV = true;
-            animationPlayer.Play("walk");
+            if (!animationPlayer.IsPlaying())
+            {
+                animationPlayer.Play("walk");
+            }
+        }
+        else 
+        {
+            playerInFOV = false;
+            if (animationPlayer.IsPlaying())
+            {
+                animationPlayer.Seek(0, true);
+                animationPlayer.Stop();   
+            }
         }
 	}
 
-    private void OnSeeableAreaExit(Node body)
-    {
-        if (body == player)
-        {
-            playerInFOV = false;
-            animationPlayer.Seek(0, true);
-            animationPlayer.Stop();
+    // private void OnSeeableAreaEntered(Node body)
+	// {
+	// 	if (body == player)
+    //     {
+    //         playerInFOV = true;
+    //         animationPlayer.Play("walk");
+    //     }
+	// }
 
-        }
-    }
+    // private void OnSeeableAreaExit(Node body)
+    // {
+    //     if (body == player)
+    //     {
+    //         playerInFOV = false;
+    //         animationPlayer.Seek(0, true);
+    //         animationPlayer.Stop();
+
+    //     }
+    // }
 
     public void Hit() // TODO: Implement health
     {

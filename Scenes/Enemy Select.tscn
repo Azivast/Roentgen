@@ -50,9 +50,9 @@ expand = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="Human"]
-margin_left = 146.488
+margin_left = 153.426
 margin_top = 371.411
-margin_right = 330.488
+margin_right = 337.426
 margin_bottom = 446.411
 theme = ExtResource( 2 )
 text = "Humans
@@ -75,9 +75,9 @@ expand = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="Wasp"]
-margin_left = 144.437
+margin_left = 147.695
 margin_top = 365.26
-margin_right = 328.437
+margin_right = 331.695
 margin_bottom = 440.26
 theme = ExtResource( 2 )
 text = "Wasps"
