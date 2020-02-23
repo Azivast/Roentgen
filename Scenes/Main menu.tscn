@@ -80,7 +80,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Credits"
 align = 0
 script = ExtResource( 3 )
-sceneToLoad = "Instructions"
+sceneToLoad = "Credits"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 visible = false
