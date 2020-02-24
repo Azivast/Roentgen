@@ -31,6 +31,7 @@ public class ExplosiveBarrel : RigidBody
         animation.Play("Explode");
         audio.Play();
         sprite.QueueFree();
+        collisionShape.QueueFree();
         timer.Start();
     }
 
@@ -45,7 +46,6 @@ public class ExplosiveBarrel : RigidBody
     private void RemoveExploded()
     {
         area.QueueFree();
-        collisionShape.QueueFree();
         explosionMesh.QueueFree();
     }
     private void RemoveAll()

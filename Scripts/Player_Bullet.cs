@@ -82,7 +82,7 @@ public class Player_Bullet : KinematicBody
 			else offset = (Vector3)collision.Collider.Get("Translation");
 			((CPUParticles)b.GetNode("CPUParticles")).SetTranslation(collision.Position - offset);
 
-			if (collision.Collider is RigidBody)
+			if (collision.Collider is RigidBody && !(collision.Collider is Player) && !(collision.Collider is Enemy))
 			{
 				// Apply impulse to rigidbodies
 				((RigidBody)collision.Collider).ApplyCentralImpulse(-collision.Normal * 5f);

@@ -17,15 +17,22 @@ public class Button : Godot.Button
 
     public void OnButtonPressed()
     {
-        if (exitButton)
-            GetTree().Quit();
-        
         if (sceneButton)
-            GetTree().ChangeScene("res://Scenes/" + sceneToLoad.ToString() + ".tscn");
+        {
+            if (exitButton) GetTree().Quit();
+            //else if (sceneToLoad == "Level1") GetTree().ChangeSceneTo(ResourceLoader.Load<PackedScene>("res://Scenes/Level1.tscn"));
+            else GetTree().ChangeScene("res://Scenes/" + sceneToLoad.ToString() + ".tscn");
+            
+        }
+        
         else
         {
-            var container = ((TabContainer)GetNode("/root/Control/TabContainer"));
-            container.CurrentTab = TabToLoad;
+            try
+            {
+                var container = ((TabContainer)GetNode("/root/Control/TabContainer"));
+                container.CurrentTab = TabToLoad;
+            }
+            catch{}
         }
 
     }

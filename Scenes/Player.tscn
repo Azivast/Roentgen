@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Head.cs" type="Script" id=2]
@@ -14,10 +14,14 @@
 [ext_resource path="res://Sounds/fire2.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/ammo box.wav" type="AudioStream" id=14]
+[ext_resource path="res://Scenes/Game Over.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.43
 height = 0.89
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.2, 0.2, 0.2 )
 
 [sub_resource type="SpatialMaterial" id=2]
 resource_name = "Gun_Material"
@@ -95,8 +99,18 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+mode = 1
+mass = 3.0
+continuous_cd = true
+linear_damp = 0.5
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 7 )
+disabled = true
 
 [node name="Head" type="Spatial" parent="."]
 script = ExtResource( 2 )
@@ -142,6 +156,9 @@ one_shot = true
 [node name="HUD" type="Control" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PickUpRect" type="TextureRect" parent="HUD"]
 modulate = Color( 1, 1, 1, 0 )
@@ -230,6 +247,9 @@ margin_bottom = -256.858
 theme = ExtResource( 11 )
 text = "Press E to interact"
 align = 1
+
+[node name="Game Over" parent="." instance=ExtResource( 15 )]
+visible = false
 
 [node name="Firing audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )

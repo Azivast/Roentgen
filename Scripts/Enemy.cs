@@ -75,8 +75,8 @@ public class Enemy : RigidBody
         // Track player
         TrackPlayer();
 
-        // Dont process unless enemy is alive and player is present
-        if (playerInFOV == false || dead || player == null) 
+        // Dont process unless enemy is alive and player is alive present
+        if (playerInFOV == false || dead || player == null || ((Player)player).IsDead) 
             return;
 
         // Disable muzzle flash incase it's lit
@@ -115,11 +115,9 @@ public class Enemy : RigidBody
         // else
         //     velocity.y = 0;
 
-        // Dont process other physics unless enemy is alive and player is present
-        if (dead || playerInFOV == false || player == null) 
+        // Dont process other physics unless enemy is alive and player alive and is present
+        if (dead || playerInFOV == false || player == null || ((Player)player).IsDead) 
         {
-            // Move
-            ;
             return;
         }
 	

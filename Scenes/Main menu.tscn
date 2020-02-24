@@ -10,24 +10,24 @@
 [ext_resource path="res://Scenes/Options2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Menu background.tscn" type="PackedScene" id=9]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 size = 120
 extra_spacing_char = 4
 font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=8]
 size = 40
 font_data = ExtResource( 2 )
 
@@ -35,43 +35,57 @@ font_data = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -320, 2160 )
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 1 )
 tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Main" type="VBoxContainer" parent="TabContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_top = 250
+custom_constants/margin_left = 50
 
-[node name="Title" type="Label" parent="TabContainer/Main"]
+[node name="Main" type="VBoxContainer" parent="TabContainer/MarginContainer"]
+margin_left = 50.0
+margin_top = 250.0
 margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Title" type="Label" parent="TabContainer/MarginContainer/Main"]
+margin_right = 1870.0
 margin_bottom = 106.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 2 )
 text = "ROENTGEN"
 valign = 1
 
-[node name="Spacer" type="Label" parent="TabContainer/Main"]
+[node name="Spacer" type="Label" parent="TabContainer/MarginContainer/Main"]
 margin_top = 110.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 146.0
 theme = ExtResource( 3 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 
-[node name="Play" type="Button" parent="TabContainer/Main"]
+[node name="Play" type="Button" parent="TabContainer/MarginContainer/Main"]
 margin_top = 150.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 186.0
 theme = ExtResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Start game"
 align = 0
@@ -79,16 +93,16 @@ script = ExtResource( 5 )
 sceneToLoad = "Level1"
 sceneButton = true
 
-[node name="Instructions" type="Button" parent="TabContainer/Main"]
+[node name="Instructions" type="Button" parent="TabContainer/MarginContainer/Main"]
 margin_top = 190.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 226.0
 theme = ExtResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "INSTRUCTIONS"
 align = 0
@@ -96,16 +110,16 @@ script = ExtResource( 5 )
 sceneToLoad = "Instructions"
 TabToLoad = 1
 
-[node name="Credits" type="Button" parent="TabContainer/Main"]
+[node name="Credits" type="Button" parent="TabContainer/MarginContainer/Main"]
 margin_top = 230.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 266.0
 theme = ExtResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Credits"
 align = 0
@@ -113,16 +127,16 @@ script = ExtResource( 5 )
 sceneToLoad = "Credits"
 TabToLoad = 2
 
-[node name="Options" type="Button" parent="TabContainer/Main"]
+[node name="Options" type="Button" parent="TabContainer/MarginContainer/Main"]
 margin_top = 270.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 306.0
 theme = ExtResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Options"
 align = 0
@@ -130,21 +144,22 @@ script = ExtResource( 5 )
 sceneToLoad = ""
 TabToLoad = 3
 
-[node name="Exit" type="Button" parent="TabContainer/Main"]
+[node name="Exit" type="Button" parent="TabContainer/MarginContainer/Main"]
 margin_top = 310.0
-margin_right = 1920.0
+margin_right = 1870.0
 margin_bottom = 346.0
 theme = ExtResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 text = "Quit"
 align = 0
 script = ExtResource( 5 )
 sceneToLoad = "exit"
+sceneButton = true
 
 [node name="Instructions" parent="TabContainer" instance=ExtResource( 6 )]
 visible = false
@@ -163,14 +178,14 @@ margin_left = 590.0
 margin_top = 999.0
 margin_right = 953.0
 margin_bottom = 1076.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Version 1.0"
 align = 1
 valign = 1
 
 [node name="Spatial" parent="." instance=ExtResource( 9 )]
-[connection signal="pressed" from="TabContainer/Main/Play" to="TabContainer/Main/Play" method="OnButtonPressed"]
-[connection signal="pressed" from="TabContainer/Main/Instructions" to="TabContainer/Main/Instructions" method="OnButtonPressed"]
-[connection signal="pressed" from="TabContainer/Main/Credits" to="TabContainer/Main/Credits" method="OnButtonPressed"]
-[connection signal="pressed" from="TabContainer/Main/Options" to="TabContainer/Main/Options" method="OnButtonPressed"]
-[connection signal="pressed" from="TabContainer/Main/Exit" to="TabContainer/Main/Exit" method="OnButtonPressed"]
+[connection signal="pressed" from="TabContainer/MarginContainer/Main/Play" to="TabContainer/MarginContainer/Main/Play" method="OnButtonPressed"]
+[connection signal="pressed" from="TabContainer/MarginContainer/Main/Instructions" to="TabContainer/MarginContainer/Main/Instructions" method="OnButtonPressed"]
+[connection signal="pressed" from="TabContainer/MarginContainer/Main/Credits" to="TabContainer/MarginContainer/Main/Credits" method="OnButtonPressed"]
+[connection signal="pressed" from="TabContainer/MarginContainer/Main/Options" to="TabContainer/MarginContainer/Main/Options" method="OnButtonPressed"]
+[connection signal="pressed" from="TabContainer/MarginContainer/Main/Exit" to="TabContainer/MarginContainer/Main/Exit" method="OnButtonPressed"]

@@ -26,6 +26,7 @@ public class Player : KinematicBody
 	[Export] public int MaxHealth = 100;
 	public int Health;
 	private AudioStreamPlayer addHealthSound;
+	public bool IsDead = false;
 
 	// HUD variables
 	private Label HealthLabel;
@@ -234,7 +235,7 @@ public class Player : KinematicBody
 		// Apply impulse to rigidbodies player is colliding with
 		for (int i = 0; i < GetSlideCount(); i++)
 		{
-        	var collision = GetSlideCollision(i);
+			var collision = GetSlideCollision(i);
 
 			// TODO: Replace this with something more proper than try catch
 			try 
@@ -297,18 +298,29 @@ public class Player : KinematicBody
 		ammo--;
 	}
 
-		public override void _Process(float delta)
+	public override void _Process(float delta)
     {
-		Look();
-		Interact();
+		// Check if game should exit
+		if (Input.IsActionPressed("ui_cancel"))
+			GetTree().ChangeScene("res://Scenes/Main menu.tscn");
 
 		// Update text on HUD
 		HealthLabel.Text = Health.ToString();
 		AmmoLabel.Text = ammo.ToString();
+
+		// Don't do anything if else player is dead
+		if (IsDead) return;
+
+		Look();
+		Interact();
     }
 	
 	public override void _PhysicsProcess(float delta)
     {
+		// Don't do anything if player is dead
+		if (IsDead) return;
+
+
 		if (flying)
 			fly(delta);
         else 
@@ -319,10 +331,6 @@ public class Player : KinematicBody
 			if (firingTimer.IsStopped())
 				Shoot();
 		}
-		
-		// Check if game should exit
-		if (Input.IsActionPressed("ui_cancel"))
-			GetTree().ChangeScene("res://Scenes/Main Menu.tscn");
     }
 	
 	private void OnLadderAreaEntered(object body)
@@ -361,7 +369,26 @@ public class Player : KinematicBody
 	}
 	public void Kill()
 	{
-		GetTree().ChangeScene("res://Scenes/Game Over.tscn");
+		IsDead = true;
+
+		// Hide some nodes
+		((Control)GetNode("HUD")).Visible = false;
+		((WeaponSway)GetNode("Head/Gun")).Visible = false;
+		
+		// Activate collision shape
+		CollisionShape collisionShape = (CollisionShape)GetNode("RigidBody/CollisionShape");
+		collisionShape.Disabled = false;
+		// Reparent camera to rigibody
+		this.RemoveChild(head);
+		RigidBody rigidBody = (RigidBody)GetNode("RigidBody");
+		rigidBody.AddChild(head);
+		head.SetOwner(rigidBody);
+
+		// Show game over screen
+		((Control)GetNode("Game Over")).Visible = true;
+
+		// Show mouse cursor
+		Input.SetMouseMode(Input.MouseMode.Visible);
 	}
 	public void AddAmmo(int amount)
 	{

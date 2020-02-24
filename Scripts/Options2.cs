@@ -14,11 +14,11 @@ public class Options2 : Control
     }
 
  // Called every frame. 'delta' is the elapsed time since the previous frame.
- public override void _Process(float delta)
- {
-     SoundSlider();
-     MusicSlider();
- }
+public override void _Process(float delta)
+{
+    SoundSlider();
+    MusicSlider();
+}
 
     public void ToggleFullscreen()
     {
@@ -27,11 +27,11 @@ public class Options2 : Control
 
     public void MusicSlider()
     {
-        AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), ((HSlider)GetNode("VBoxContainer/HBoxContainer2/HSlider")).GetValue());
+        AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), (float)((HSlider)GetNode("VBoxContainer/HBoxContainer2/HSlider")).GetValue());
     }
     public void SoundSlider()
     {
-        AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), ((HSlider)GetNode("VBoxContainer/HBoxContainer4/HSlider")).GetValue());
+        AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), (float)((HSlider)GetNode("VBoxContainer/HBoxContainer4/HSlider")).GetValue());
     }
 
     public void SoundMute()
