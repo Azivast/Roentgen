@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Enemy.cs" type="Script" id=1]
 [ext_resource path="res://Sounds/death.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/player hit.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/fire.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/fire2.wav" type="AudioStream" id=4]
 [ext_resource path="res://Textures/enemy.png" type="Texture" id=5]
 [ext_resource path="res://Sounds/Wasp dying.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Wasp wings.wav" type="AudioStream" id=7]
@@ -28,7 +28,7 @@ length = 0.8
 loop = true
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../../Enemy2:colum")
+tracks/0/path = NodePath("../..:colum")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -46,7 +46,7 @@ length = 0.8
 loop = true
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("../../../Enemy2:colum")
+tracks/0/path = NodePath("../..:colum")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -119,11 +119,12 @@ bus = "Sounds"
 
 [node name="Firing audio" type="AudioStreamPlayer3D" parent="Human Nodes"]
 stream = ExtResource( 4 )
-unit_db = 8.0
-unit_size = 7.0
-max_db = 6.0
+unit_db = -10.0
+unit_size = 13.0
+max_db = -6.0
 max_distance = 200.0
 bus = "Sounds"
+attenuation_filter_cutoff_hz = 20000.0
 
 [node name="Sprite3D" type="Sprite3D" parent="Human Nodes"]
 transform = Transform( 0.231104, 0, 0, 0, 0.471643, 0, 0, 0, 0.0806704, 0, 0.0304127, 0 )

@@ -354,7 +354,7 @@ public class Player : KinematicBody
 	public void Hit()
 	{
 		// Apply damage to health and keep it within the interval of 0 and max Health.
-		Health = Mathf.Clamp((Health - 5), 0, MaxHealth);
+		Health = Mathf.Clamp((Health - 8), 0, MaxHealth);
 
 		// Play hit sound
 		hitSound.Play();
@@ -374,7 +374,7 @@ public class Player : KinematicBody
 		// Hide some nodes
 		((Control)GetNode("HUD")).Visible = false;
 		((WeaponSway)GetNode("Head/Gun")).Visible = false;
-		
+
 		// Activate collision shape
 		CollisionShape collisionShape = (CollisionShape)GetNode("RigidBody/CollisionShape");
 		collisionShape.Disabled = false;

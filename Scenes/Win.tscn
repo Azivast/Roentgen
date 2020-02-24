@@ -1,16 +1,30 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://Scenes/GameOver.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Win.cs" type="Script" id=1]
 [ext_resource path="res://Themes/Menu theme.tres" type="Theme" id=2]
 [ext_resource path="res://Fonts/Menu font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scenes/Button.cs" type="Script" id=4]
 [ext_resource path="res://Fonts/editundo.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Mesh Libraries/gridmap.meshlib" type="MeshLibrary" id=6]
-[ext_resource path="res://Textures/graffiti1.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Environment/Rebar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/box.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Environment/Graffiti Danger.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Environment/Graffiti Arrow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Environment/Graffiti Arrow2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Environment/Graffiti Radioactive.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Ammo Box.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Explosive Barrel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Sounds/Sunny Day Whistler.wav" type="AudioStream" id=16]
+[ext_resource path="res://Models/gun.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://Textures/Gun.png" type="Texture" id=18]
 
 [sub_resource type="DynamicFont" id=4]
 size = 100
 font_data = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 18 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -45,7 +59,7 @@ custom_fonts/font = SubResource( 4 )
 align = 1
 valign = 1
 
-[node name="Try again" type="Button" parent="VBoxContainer"]
+[node name="Play again" type="Button" parent="VBoxContainer"]
 margin_top = 258.0
 margin_right = 1920.0
 margin_bottom = 294.0
@@ -79,22 +93,74 @@ sceneButton = true
 
 [node name="Spatial" type="Spatial" parent="."]
 
+[node name="CSGMesh" type="CSGMesh" parent="Spatial"]
+transform = Transform( -0.0398297, 0.0567919, 0.0649098, -0.0372706, 0.053143, -0.0693666, -0.0777785, -0.0545482, -2.8373e-09, -0.157233, 1.11621, -2.24805 )
+mesh = ExtResource( 17 )
+material = SubResource( 5 )
+
+[node name="Rebar" parent="Spatial" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 0.962928, 0.26976, 0, -0.26976, 0.962928, -2.56166, 2.3335, -2.66639 )
+
+[node name="Camera" type="Camera" parent="Spatial"]
+transform = Transform( 0.997892, 0.00758511, -0.0644582, -0.0185119, 0.985156, -0.170658, 0.062207, 0.171492, 0.98322, -0.413962, 1.89585, -0.204973 )
+
+[node name="Graffiti Arrow3" parent="Spatial" instance=ExtResource( 11 )]
+transform = Transform( 0.979852, -0.199727, -8.73035e-09, 0.199727, 0.979852, -8.80707e-10, 8.73035e-09, -8.80732e-10, 1, -0.865085, 4.47863, -2.99861 )
+
+[node name="Graffiti Arrow2" parent="Spatial" instance=ExtResource( 10 )]
+transform = Transform( 0.985706, 0.168472, 7.36415e-09, -0.168472, 0.985706, -6.24784e-10, -7.36415e-09, -6.24809e-10, 1, 1.85856, 2.89203, -2.95834 )
+flip_h = true
+
+[node name="Graffiti Arrow" parent="Spatial" instance=ExtResource( 9 )]
+transform = Transform( 0.985706, 0.168472, 7.36415e-09, -0.168472, 0.985706, -6.24784e-10, -7.36415e-09, -6.24805e-10, 1, 0.756565, 1.73693, -2.99914 )
+
+[node name="Graffiti Radioactive" parent="Spatial" instance=ExtResource( 12 )]
+transform = Transform( 0.995949, -0.0899199, -3.93053e-09, 0.0899199, 0.995949, -1.77067e-10, 3.93052e-09, -1.77085e-10, 1, -1.54986, 3.05138, -2.99921 )
+
 [node name="GridMap" type="GridMap" parent="Spatial"]
 mesh_library = ExtResource( 6 )
 cell_size = Vector3( 1, 1, 1 )
 data = {
-"cells": PoolIntArray( 0, 0, 536870912, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 65533, 1, 0, 65534, 1, -1610612736, 65535, 1, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 65533, 3, 0, 65534, 3, -1610612736, 65535, 3, 0, 0, 65534, 0, 1, 65534, -536870912, 2, 65534, 0, 3, 65534, 0, 65533, 65534, -1610612736, 65534, 65534, 0, 65535, 65534, 0, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0, 65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+"cells": PoolIntArray( 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 65531, 0, 536870914, 65532, 0, 2, 65533, 0, 2, 65534, 0, 2, 65535, 0, 2, 65540, 0, 0, 131067, 0, 0, 131076, 0, 0, 196603, 0, 0, 196612, 0, 0, 262139, 0, 0, 262148, 0, 0, 327675, 0, 0, 327680, 0, 1, 327681, 0, 1, 327682, 0, 1, 327683, 0, 1, 393212, 0, 1, 393213, 0, 1, 393214, 0, 1, 393215, 0, 1, 0, 1, 2, 1, 1, 2, 2, 1, 2, 3, 1, 1073741826, 4, 1, 2, 65531, 1, 536870914, 65532, 1, 2, 65533, 1, 2, 65534, 1, -1610612734, 65535, 1, 2, 65540, 1, 0, 131067, 1, 0, 131076, 1, 0, 196603, 1, 0, 196612, 1, 0, 262139, 1, 0, 262148, 1, 0, 327675, 1, 0, 327680, 1, 1, 327681, 1, 1, 327682, 1, 1, 327683, 1, 1, 393212, 1, 1, 393213, 1, 1, 393214, 1, 1, 393215, 1, 1, 0, 65532, 2, 1, 65532, 2, 2, 65532, 2, 3, 65532, 2, 4, 65532, 2, 65531, 65532, 2, 65532, 65532, 2, 65533, 65532, 2, 65534, 65532, 2, 65535, 65532, 2, 65536, 65532, 0, 65537, 65532, 0, 65538, 65532, 0, 65539, 65532, 0, 131068, 65532, 0, 131069, 65532, 0, 131070, 65532, 0, 131071, 65532, 0, 131072, 65532, 0, 131073, 65532, 0, 131074, 65532, 0, 131075, 65532, 0, 196604, 65532, 0, 196605, 65532, 0, 196606, 65532, 0, 196607, 65532, 0, 196608, 65532, 0, 196609, 65532, -1610612736, 196610, 65532, 0, 196611, 65532, 0, 262140, 65532, 0, 262141, 65532, -1610612736, 262142, 65532, -1610612736, 262143, 65532, 0, 262144, 65532, 0, 262145, 65532, 0, 262146, 65532, 0, 262147, 65532, 0, 327676, 65532, 0, 327677, 65532, 0, 327678, 65532, 0, 327679, 65532, 0, 0, 65533, 2, 1, 65533, -1610612734, 2, 65533, 2, 3, 65533, 536870914, 4, 65533, -1610612734, 65531, 65533, -1610612734, 65532, 65533, 2, 65533, 65533, 2, 65534, 65533, 2, 65535, 65533, 2, 65540, 65533, 0, 131067, 65533, -1610612736, 131076, 65533, -1610612736, 196603, 65533, 0, 196612, 65533, 0, 262139, 65533, 0, 262148, 65533, 0, 327675, 65533, 0, 327680, 65533, -1610612735, 327681, 65533, 1, 327682, 65533, -1610612735, 327683, 65533, 1, 393212, 65533, 1, 393213, 65533, -1610612735, 393214, 65533, 1, 393215, 65533, 1, 0, 65534, -1610612734, 1, 65534, 2, 2, 65534, 536870914, 3, 65534, -1610612734, 4, 65534, 2, 65531, 65534, 2, 65532, 65534, 2, 65533, 65534, 2, 65534, 65534, 2, 65535, 65534, 2, 65540, 65534, 0, 131067, 65534, -1610612736, 131076, 65534, 536870912, 196603, 65534, 0, 196612, 65534, 0, 262139, 65534, 0, 262148, 65534, 0, 327675, 65534, 0, 327680, 65534, 1, 327681, 65534, 1, 327682, 65534, 1, 327683, 65534, 1, 393212, 65534, 1, 393213, 65534, 1, 393214, 65534, 1, 393215, 65534, -1610612735, 0, 65535, 2, 1, 65535, 2, 2, 65535, 2, 3, 65535, 2, 4, 65535, 2, 65531, 65535, 2, 65532, 65535, 536870914, 65533, 65535, 2, 65534, 65535, 2, 65535, 65535, 1073741826, 65540, 65535, 0, 131067, 65535, 1073741824, 131076, 65535, 0, 196603, 65535, -1610612736, 196612, 65535, 0, 262139, 65535, 0, 262148, 65535, 0, 327675, 65535, 0, 327680, 65535, -1610612735, 327681, 65535, 1, 327682, 65535, 1, 327683, 65535, 536870913, 393212, 65535, -1610612735, 393213, 65535, 1, 393214, 65535, 1, 393215, 65535, 1 )
 }
 __meta__ = {
-"_editor_clip_": 0
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 4, 0 )
 }
 
-[node name="Camera" type="Camera" parent="Spatial"]
-transform = Transform( 0.942139, 0.307863, -0.132642, 0.0542951, 0.250318, 0.96664, 0.330795, -0.917911, 0.219119, -0.413962, 2.57007, 1.74341 )
+[node name="Box" parent="Spatial" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73569, 1.36754, -2.49092 )
 
-[node name="Sprite3D" type="Sprite3D" parent="Spatial"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.21416, 1.00905, 1.1306 )
-pixel_size = 0.03
-texture = ExtResource( 7 )
-[connection signal="pressed" from="VBoxContainer/Try again" to="VBoxContainer/Try again" method="OnButtonPressed"]
+[node name="Box2" parent="Spatial" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28937, 1.36754, -2.49092 )
+
+[node name="Box3" parent="Spatial" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00885, 1.36754, -2.43881 )
+
+[node name="Box4" parent="Spatial" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73159, 2.13907, -2.49092 )
+
+[node name="Torch" parent="Spatial" instance=ExtResource( 13 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.97458, 3.97401, -2.997 )
+
+[node name="Torch2" parent="Spatial" instance=ExtResource( 13 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -2.28699, 3.97401, -2.997 )
+
+[node name="Torch4" parent="Spatial" instance=ExtResource( 13 )]
+transform = Transform( 4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, -2.28699, 2.51903, -0.514163 )
+
+[node name="Torch3" parent="Spatial" instance=ExtResource( 13 )]
+transform = Transform( 4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, 1.97458, 2.51903, -0.514163 )
+
+[node name="AmmoBox" parent="Spatial" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.38306, 1.30922, -2.20047 )
+
+[node name="StaticBody" parent="Spatial" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90632, 1.47542, -2.55038 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Spatial"]
+stream = ExtResource( 16 )
+volume_db = -6.0
+autoplay = true
+[connection signal="pressed" from="VBoxContainer/Play again" to="VBoxContainer/Play again" method="OnButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/Return" to="VBoxContainer/Return" method="OnButtonPressed"]

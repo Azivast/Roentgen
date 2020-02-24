@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.000147318, 1.4227, 1.49009e-005 ), Vector3( 0, 3.4, 0 ) ]
+"values": [ Vector3( 0.000147318, 1.4227, 1.49009e-05 ), Vector3( 0, 3.4, 0 ) ]
 }
 
 [sub_resource type="CubeMesh" id=3]
@@ -34,7 +34,7 @@ uv1_scale = Vector3( 3, 2, 1 )
 [node name="Door" type="Spatial"]
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 1.006, -0.000412964, 5.08667e-009, 0.000377675, 1.1, 1.22611e-005, -1.1121e-009, -1.37841e-006, 0.114238, 0.000147318, 1.4227, 1.49009e-005 )
+transform = Transform( 1.006, -0.000412964, 5.08667e-09, 0.000377675, 1.1, 1.22611e-05, -1.1121e-09, -1.37841e-06, 0.114238, 0.000147318, 1.4227, 1.49009e-05 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
@@ -48,13 +48,13 @@ one_shot = true
 anims/Open = SubResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 1, 1.1622e-013, -8.88178e-016, 8.742e-011, 1, -4.54747e-012, 3.55271e-015, 1.81899e-012, 1, -0.000953953, -0.000895381, 0.00104559 )
+transform = Transform( 1, 1.1622e-13, -8.88178e-16, 8.742e-11, 1, -4.54747e-12, 3.55271e-15, 1.81899e-12, 1, -0.000953953, -0.000895381, 0.00104559 )
 use_in_baked_light = true
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="Audio open" type="AudioStreamPlayer3D" parent="StaticBody"]
-transform = Transform( 0.994036, -6.69282e-010, -8.3216e-008, 2.92117e-011, 0.909091, -9.6433e-005, 0, 9.09495e-013, 8.75365, 0, 0, 0 )
+transform = Transform( 0.994036, -6.69282e-10, -8.3216e-08, 2.92117e-11, 0.909091, -9.6433e-05, 0, 9.09495e-13, 8.75365, 0, 0, 0 )
 stream = ExtResource( 3 )
 unit_db = 8.0
 unit_size = 3.0

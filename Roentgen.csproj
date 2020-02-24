@@ -67,12 +67,14 @@
     <Compile Include="Scripts\Global.cs" />
     <Compile Include="Scripts\HealthPack.cs" />
     <Compile Include="Scripts\MainMenu.cs" />
+    <Compile Include="Scripts\MusicArea.cs" />
     <Compile Include="Scripts\Options.cs" />
     <Compile Include="Scripts\Options2.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Head.cs" />
     <Compile Include="Scripts\Player_Bullet.cs" />
     <Compile Include="Scripts\WeaponSway.cs" />
+    <Compile Include="Scripts\Win.cs" />
     <Compile Include="Scripts\WinButton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)/Microsoft.CSharp.targets" />

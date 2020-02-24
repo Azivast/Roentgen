@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Sunny Day Whistler.wav-d5da6c42a1a62af8acfcbb19a60afd92.sample"
+
+[deps]
+
+source_file="res://Sounds/Sunny Day Whistler.wav"
+dest_files=[ "res://.import/Sunny Day Whistler.wav-d5da6c42a1a62af8acfcbb19a60afd92.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

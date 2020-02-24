@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/explosive barrel.png-f9f1cd97ab93313f836f32d980681428.s3tc.stex"
-path.etc2="res://.import/explosive barrel.png-f9f1cd97ab93313f836f32d980681428.etc2.stex"
+path="res://.import/explosive barrel.png-f9f1cd97ab93313f836f32d980681428.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Textures/explosive barrel.png"
-dest_files=[ "res://.import/explosive barrel.png-f9f1cd97ab93313f836f32d980681428.s3tc.stex", "res://.import/explosive barrel.png-f9f1cd97ab93313f836f32d980681428.etc2.stex" ]
+dest_files=[ "res://.import/explosive barrel.png-f9f1cd97ab93313f836f32d980681428.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=1.0
 compress/hdr_mode=0
 compress/bptc_ldr=0
