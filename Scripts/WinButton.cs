@@ -21,8 +21,8 @@ public class WinButton : StaticBody
 
     // Method that runs when interacted with
     public void Interact()
-  	{
+    {
         //GetTree().ChangeScene("res://Scenes/" + LoadScene + ".tscn");
         GetTree().ChangeScene("res://Scenes/Win.tscn");
-  	}	
+    }	
 }
