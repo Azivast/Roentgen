@@ -28,6 +28,7 @@ Global="*res://Scripts/Global.cs"
 
 window/size/width=1920
 window/size/height=1080
+window/size/fullscreen=true
 window/size/test_width=1920
 window/size/test_height=1080
 window/stretch/mode="viewport"

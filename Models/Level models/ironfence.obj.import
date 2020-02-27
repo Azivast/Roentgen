@@ -15,4 +15,5 @@ dest_files=[ "res://.import/ironfence.obj-700a7df2684f91a7e8116f1b7cbcdec6.mesh"
 
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
 optimize_mesh=true

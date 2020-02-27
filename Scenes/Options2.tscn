@@ -58,6 +58,7 @@ align = 1
 margin_left = 1050.0
 margin_right = 1126.0
 margin_bottom = 40.0
+pressed = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 418.0
@@ -67,17 +68,17 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 774.0
+margin_left = 759.0
 margin_top = 7.0
-margin_right = 1026.0
+margin_right = 1041.0
 margin_bottom = 43.0
 custom_fonts/font = ExtResource( 3 )
-text = "Music level"
+text = "Music volume"
 align = 1
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 1046.0
-margin_right = 1146.0
+margin_left = 1061.0
+margin_right = 1161.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
 min_value = -50.0
@@ -85,35 +86,10 @@ max_value = 0.0
 step = 10.0
 value = -10.0
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 508.0
 margin_right = 1920.0
-margin_bottom = 558.0
-custom_constants/separation = 20
-alignment = 1
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
-margin_left = 674.0
-margin_top = 7.0
-margin_right = 1126.0
-margin_bottom = 43.0
-custom_fonts/font = ExtResource( 3 )
-text = "Sound Effects level"
-align = 1
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer4"]
-margin_left = 1146.0
-margin_right = 1246.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 100, 50 )
-min_value = -50.0
-max_value = 0.0
-step = 10.0
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 598.0
-margin_right = 1920.0
-margin_bottom = 638.0
+margin_bottom = 548.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -130,6 +106,31 @@ align = 1
 margin_left = 1059.0
 margin_right = 1135.0
 margin_bottom = 40.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 588.0
+margin_right = 1920.0
+margin_bottom = 638.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 755.0
+margin_top = 7.0
+margin_right = 1045.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 3 )
+text = "Sound volume"
+align = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer4"]
+margin_left = 1065.0
+margin_right = 1165.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
+min_value = -50.0
+max_value = 0.0
+step = 10.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 678.0

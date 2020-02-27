@@ -31,7 +31,7 @@ public override void _Process(float delta)
     }
     public void SoundSlider()
     {
-        AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), (float)((HSlider)GetNode("VBoxContainer/HBoxContainer4/HSlider")).GetValue());
+        AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Master"), (float)((HSlider)GetNode("VBoxContainer/HBoxContainer4/HSlider")).GetValue());
     }
 
     public void SoundMute()
